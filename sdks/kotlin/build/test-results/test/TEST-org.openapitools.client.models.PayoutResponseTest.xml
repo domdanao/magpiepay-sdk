@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.openapitools.client.models.PayoutResponseTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2025-11-23T10:00:01.896Z" hostname="Dom-MacBook" time="0.014">
+  <properties/>
+  <testcase name="should test id" classname="org.openapitools.client.models.PayoutResponseTest" time="0.012"/>
+  <testcase name="should test referenceId" classname="org.openapitools.client.models.PayoutResponseTest" time="0.011"/>
+  <testcase name="should test channel" classname="org.openapitools.client.models.PayoutResponseTest" time="0.011"/>
+  <testcase name="should test amount" classname="org.openapitools.client.models.PayoutResponseTest" time="0.01"/>
+  <testcase name="should test sourceAccountId" classname="org.openapitools.client.models.PayoutResponseTest" time="0.01"/>
+  <testcase name="should test destination" classname="org.openapitools.client.models.PayoutResponseTest" time="0.009"/>
+  <testcase name="should test status" classname="org.openapitools.client.models.PayoutResponseTest" time="0.01"/>
+  <testcase name="should test createdAt" classname="org.openapitools.client.models.PayoutResponseTest" time="0.01"/>
+  <testcase name="should test updatedAt" classname="org.openapitools.client.models.PayoutResponseTest" time="0.009"/>
+  <testcase name="should test livemode" classname="org.openapitools.client.models.PayoutResponseTest" time="0.009"/>
+  <testcase name="should test magpieFee" classname="org.openapitools.client.models.PayoutResponseTest" time="0.006"/>
+  <testcase name="should test purpose" classname="org.openapitools.client.models.PayoutResponseTest" time="0.005"/>
+  <testcase name="should test provider" classname="org.openapitools.client.models.PayoutResponseTest" time="0.005"/>
+  <testcase name="should test providerRef" classname="org.openapitools.client.models.PayoutResponseTest" time="0.004"/>
+  <testcase name="should test providerMessage" classname="org.openapitools.client.models.PayoutResponseTest" time="0.003"/>
+  <testcase name="should test metadata" classname="org.openapitools.client.models.PayoutResponseTest" time="0.004"/>
+  <testcase name="should test postedAt" classname="org.openapitools.client.models.PayoutResponseTest" time="0.003"/>
+  <testcase name="should test completedAt" classname="org.openapitools.client.models.PayoutResponseTest" time="0.003"/>
+  <testcase name="should test failedAt" classname="org.openapitools.client.models.PayoutResponseTest" time="0.003"/>
+  <testcase name="should test failureCode" classname="org.openapitools.client.models.PayoutResponseTest" time="0.002"/>
+  <testcase name="should test failureMessage" classname="org.openapitools.client.models.PayoutResponseTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,1886 @@
+openapi: 3.1.0
+info:
+  description: Magpie API for QRPh and Disbursement services
+  title: Magpie API Documentation
+  version: 1.0.0
+servers:
+- url: /
+security:
+- basicAuth: []
+tags:
+- description: "QRPh requests allow merchants to generate payment QR codes that customers\
+    \ can scan using any QRPh-compliant wallet or banking app. When a merchant initiates\
+    \ a QR generation request, the system returns the QR data needed to create a scannable\
+    \ QR image. This QR can be dynamic (unique per transaction) or static (reusable).\
+    \ Merchants may also request updates such as checking if the QR has already been\
+    \ paid or canceling a QR that should no longer be used."
+  name: QRPh Requests
+- description: "Payments are processed when the customer scans the QR code and approves\
+    \ the payment using their financial app. The payment is routed through the customer’\
+    s bank or e-wallet and validated through the national QRPh network. Once the transaction\
+    \ is completed, the merchant receives a real-time callback notification containing\
+    \ the payment amount, payment channel, timestamps, and confirmation message."
+  name: Payments
+- description: "The payout service allows partners to send funds from their disbursement\
+    \ account to any participating bank or e-wallet in the Philippines. Two clearing\
+    \ networks are supported—InstaPay and PESONet—giving partners flexibility depending\
+    \ on speed and transaction value.<br/><br/>InstaPay enables real-time, low-value\
+    \ transfers of up to ₱50,000 per transaction. Funds are processed instantly and\
+    \ typically reach the recipient within seconds. This is ideal for time-sensitive\
+    \ disbursements such as customer refunds, driver or rider payouts, incentives,\
+    \ or wallet top-ups.,<br/><br/>PESONet supports larger-value or batch transfers\
+    \ processed according to the network’s scheduled clearing cycle. It is suited\
+    \ for bulk payouts, salary runs, vendor payments, and other high-value transfers\
+    \ where same-day or next-day posting is acceptable."
+  name: Payouts
+paths:
+  /v1/qrph/:
+    get:
+      description: Returns a paginated collection of QRPh requests for the authenticated
+        organization. Use `limit` and `cursor` for pagination and `reference_id` to
+        locate a specific request.
+      operationId: list_qrph_v1_qrph__get
+      parameters:
+      - description: Number of items to return (1-100).
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          description: Number of items to return (1-100).
+          maximum: 100
+          minimum: 1
+          title: Page size
+          type: integer
+        style: form
+      - description: Opaque cursor returned from the previous page for pagination.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - description: Filter on a specific request reference ID.
+        explode: true
+        in: query
+        name: reference_id
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-API-Key
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                - id: qr_01ka0jjyq6yp4xhv4425
+                  reference_id: order-410-393
+                  type: static
+                  amount: 100
+                  status: paid
+                  metadata:
+                    driver: Juan dela Cruz
+                    driver_id: DRIVER#123
+                  qrph_payload: 00020101021128760011ph.ppmi.p2m.qrph...
+                  qrph_image: "data:image/png;base64,iVBORw0KGgo..."
+                  checkout_url: https://checkout.magpiepay.com/c?token=eyJle...
+                  payment_id: pay_01ka0555mw40ajcdgzn34sg6p5
+                  paid_at: 2025-11-14T03:51:16+00:00
+                  expires_at: 2025-11-14T07:29:30.662982+00:00
+                  created_at: 2025-11-14T06:59:30+00:00
+                  updated_at: 2025-11-14T06:59:30+00:00
+                  livemode: true
+                limit: 50
+                next_cursor: cursor_abc
+              schema:
+                $ref: "#/components/schemas/QRPhCollectionResponse"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: List QRPh requests
+      tags:
+      - QRPh Requests
+    post:
+      description: Creates a QRPh request from the canonical payload and returns the
+        normalized request with the checkout URL attached.
+      operationId: create_qrph_v1_qrph__post
+      parameters:
+      - explode: false
+        in: header
+        name: X-API-Key
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              reference_id: order-2025-11-20
+              type: dynamic
+              amount: 2500
+              metadata:
+                customer_id: cust_123
+                notes: in-store purchase
+            schema:
+              $ref: "#/components/schemas/CanonicalCreateQRReq"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                data:
+                  id: qr_01ka0jjyq6yp4xhv4425
+                  reference_id: order-410-393
+                  type: static
+                  amount: 100
+                  status: paid
+                  metadata:
+                    driver: Juan dela Cruz
+                    driver_id: DRIVER#123
+                  qrph_payload: 00020101021128760011ph.ppmi.p2m.qrph...
+                  qrph_image: "data:image/png;base64,iVBORw0KGgo..."
+                  checkout_url: https://checkout.magpiepay.com/c?token=eyJle...
+                  payment_id: pay_01ka0555mw40ajcdgzn34sg6p5
+                  paid_at: 2025-11-14T03:51:16+00:00
+                  expires_at: 2025-11-14T07:29:30.662982+00:00
+                  created_at: 2025-11-14T06:59:30+00:00
+                  updated_at: 2025-11-14T06:59:30+00:00
+                  livemode: true
+              schema:
+                $ref: "#/components/schemas/QRPhSingleResponse"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Create a QRPh request
+      tags:
+      - QRPh Requests
+  /v1/qrph/{id}:
+    get:
+      description: "Returns the current QRPh request state, including checkout URLs\
+        \ and payment IDs."
+      operationId: get_qrph_status_v1_qrph__id__get
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          title: Id
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-API-Key
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                  id: qr_01ka0jjyq6yp4xhv4425
+                  reference_id: order-410-393
+                  type: static
+                  amount: 100
+                  status: paid
+                  metadata:
+                    driver: Juan dela Cruz
+                    driver_id: DRIVER#123
+                  qrph_payload: 00020101021128760011ph.ppmi.p2m.qrph...
+                  qrph_image: "data:image/png;base64,iVBORw0KGgo..."
+                  checkout_url: https://checkout.magpiepay.com/c?token=eyJle...
+                  payment_id: pay_01ka0555mw40ajcdgzn34sg6p5
+                  paid_at: 2025-11-14T03:51:16+00:00
+                  expires_at: 2025-11-14T07:29:30.662982+00:00
+                  created_at: 2025-11-14T06:59:30+00:00
+                  updated_at: 2025-11-14T06:59:30+00:00
+                  livemode: true
+              schema:
+                $ref: "#/components/schemas/QRPhSingleResponse"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get QRPh status
+      tags:
+      - QRPh Requests
+  /v1/qrph/{id}/cancel:
+    post:
+      description: Cancels the specified QRPh request and returns the updated request
+        record.
+      operationId: cancel_qrph_v1_qrph__id__cancel_post
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          title: Id
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-API-Key
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              cancellation_reason: Customer requested refund
+            schema:
+              $ref: "#/components/schemas/CancelQRPhRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                  id: qr_01ka0jjyq6yp4xhv4425
+                  reference_id: order-410-393
+                  type: static
+                  amount: 100
+                  status: paid
+                  metadata:
+                    driver: Juan dela Cruz
+                    driver_id: DRIVER#123
+                  qrph_payload: 00020101021128760011ph.ppmi.p2m.qrph...
+                  qrph_image: "data:image/png;base64,iVBORw0KGgo..."
+                  checkout_url: https://checkout.magpiepay.com/c?token=eyJle...
+                  payment_id: pay_01ka0555mw40ajcdgzn34sg6p5
+                  paid_at: 2025-11-14T03:51:16+00:00
+                  expires_at: 2025-11-14T07:29:30.662982+00:00
+                  created_at: 2025-11-14T06:59:30+00:00
+                  updated_at: 2025-11-14T06:59:30+00:00
+                  livemode: true
+              schema:
+                $ref: "#/components/schemas/QRPhSingleResponse"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Cancel a QRPh request
+      tags:
+      - QRPh Requests
+  /v1/payments/:
+    get:
+      description: Returns a paginated list of QRPh payments for the authenticated
+        organization.
+      operationId: list_payments_v1_payments__get
+      parameters:
+      - description: Number of payments to return (1-100).
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          description: Number of payments to return (1-100).
+          maximum: 100
+          minimum: 1
+          title: Page size
+          type: integer
+        style: form
+      - description: Cursor returned from the previous page.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-API-Key
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                - id: pay_01ka06q2p53vbm70pvgjc2vbcf
+                  qrph_id: qr_01k9m4e0jhxasgscks9f
+                  status: paid
+                  amount: 22000
+                  magpie_mdr: "0.015"
+                  magpie_fee: 330
+                  merchant_net_amount: 21670
+                  payment_source: gcash
+                  paid_at: 2025-11-14T03:52:17+00:00
+                  created_at: 2025-11-14T03:32:02+00:00
+                  updated_at: 2025-11-14T03:32:02+00:00
+                  livemode: true
+                limit: 50
+                next_cursor: cursor_abc
+              schema:
+                $ref: "#/components/schemas/PaymentCollectionResponse"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: List payments
+      tags:
+      - Payments
+  /v1/payments/{payment_id}:
+    get:
+      description: Retrieve the current state of a QRPh payment.
+      operationId: get_payment_v1_payments__payment_id__get
+      parameters:
+      - explode: false
+        in: path
+        name: payment_id
+        required: true
+        schema:
+          title: Payment Id
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-API-Key
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                  id: pay_01ka06q2p53vbm70pvgjc2vbcf
+                  qrph_id: qr_01k9m4e0jhxasgscks9f
+                  status: paid
+                  amount: 22000
+                  magpie_mdr: "0.015"
+                  magpie_fee: 330
+                  merchant_net_amount: 21670
+                  payment_source: gcash
+                  paid_at: 2025-11-14T03:52:17+00:00
+                  created_at: 2025-11-14T03:32:02+00:00
+                  updated_at: 2025-11-14T03:32:02+00:00
+                  livemode: true
+              schema:
+                $ref: "#/components/schemas/PaymentSingleResponse"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get payment
+      tags:
+      - Payments
+  /v1/payouts/:
+    get:
+      description: Returns a paginated collection of payouts for the authenticated
+        organization.
+      operationId: list_payouts_v1_payouts__get
+      parameters:
+      - description: Number of payouts to return (1-100).
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          description: Number of payouts to return (1-100).
+          maximum: 100
+          minimum: 1
+          title: Page size
+          type: integer
+        style: form
+      - description: Cursor returned from the previous page.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - description: Filter payouts by reference ID.
+        explode: true
+        in: query
+        name: reference_id
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: X-API-Key
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                - id: po_01k9m4hs4bggbnhg61hdacrr7w
+                  reference_id: PAYOUT-123-456
+                  channel: instapay
+                  amount: 40000
+                  magpie_fee: 600
+                  source_account_id: act_01k9k6w2f33ge10qxfp7p18dqh
+                  destination:
+                    bank_code: bdo
+                    account_number: "002400091125"
+                    last_name: Dela Cruz
+                    first_name: Juan
+                  purpose: Salary payout
+                  status: processing
+                  provider_ref: {}
+                  metadata: {}
+                  created_at: 2025-11-09T11:03:18+00:00
+                  updated_at: 2025-11-09T11:03:18+00:00
+                  failure_code: "0"
+                  livemode: true
+                limit: 50
+                next_cursor: cursor_abc
+              schema:
+                $ref: "#/components/schemas/PayoutCollectionResponse"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: List payouts
+      tags:
+      - Payouts
+    post:
+      description: Initiates a payout using a canonical payload and returns the normalized
+        payout record.
+      operationId: create_payout_v1_payouts__post
+      parameters:
+      - explode: false
+        in: header
+        name: X-API-Key
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              reference_id: PAYOUT-123-456
+              channel: instapay
+              amount: 40000
+              source_account_id: act_01k90z02ps251323zgkd23cb0d
+              destination:
+                first_name: Juan
+                last_name: Dela Cruz
+                bank_code: bdo
+                account_number: "002400091125"
+              purpose: Salary payout
+            schema:
+              $ref: "#/components/schemas/PayoutCreateRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                data:
+                  id: po_01k9m4hs4bggbnhg61hdacrr7w
+                  reference_id: PAYOUT-123-456
+                  channel: instapay
+                  amount: 40000
+                  magpie_fee: 600
+                  source_account_id: act_01k9k6w2f33ge10qxfp7p18dqh
+                  destination:
+                    bank_code: bdo
+                    account_number: "002400091125"
+                    last_name: Dela Cruz
+                    first_name: Juan
+                  purpose: Salary payout
+                  status: processing
+                  provider_ref: {}
+                  metadata: {}
+                  created_at: 2025-11-09T11:03:18+00:00
+                  updated_at: 2025-11-09T11:03:18+00:00
+                  failure_code: "0"
+                  livemode: true
+              schema:
+                $ref: "#/components/schemas/PayoutSingleResponse"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Create a payout
+      tags:
+      - Payouts
+  /v1/payouts/{payout_id}:
+    get:
+      description: Retrieves the latest state for a payout.
+      operationId: get_payout_v1_payouts__payout_id__get
+      parameters:
+      - explode: false
+        in: path
+        name: payout_id
+        required: true
+        schema:
+          title: Payout Id
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-API-Key
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                  id: po_01k9m4hs4bggbnhg61hdacrr7w
+                  reference_id: PAYOUT-123-456
+                  channel: instapay
+                  amount: 40000
+                  magpie_fee: 600
+                  source_account_id: act_01k9k6w2f33ge10qxfp7p18dqh
+                  destination:
+                    bank_code: bdo
+                    account_number: "002400091125"
+                    last_name: Dela Cruz
+                    first_name: Juan
+                  purpose: Salary payout
+                  status: processing
+                  provider_ref: {}
+                  metadata: {}
+                  created_at: 2025-11-09T11:03:18+00:00
+                  updated_at: 2025-11-09T11:03:18+00:00
+                  failure_code: "0"
+                  livemode: true
+              schema:
+                $ref: "#/components/schemas/PayoutSingleResponse"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get payout
+      tags:
+      - Payouts
+  /v1/references/bank_codes:
+    get:
+      operationId: list_bank_codes_v1_references_bank_codes_get
+      parameters:
+      - explode: false
+        in: header
+        name: X-API-Key
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BankCodeCollection"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: List Bank Codes
+      tags:
+      - References
+components:
+  examples:
+    validation-error:
+      summary: Validation Error
+      value:
+        code: validation-error
+        message: Request validation failed.
+        request_id: 00000000-0000-0000-0000-000000000000
+        details:
+          errors:
+          - loc:
+            - body
+            - payload
+            - reference_id
+            msg: field required
+            type: missing
+    unauthorized:
+      summary: Unauthorized
+      value:
+        code: unauthorized
+        message: Authentication credentials were missing or invalid.
+        request_id: 00000000-0000-0000-0000-000000000000
+        details:
+          reason: missing-api-key
+    forbidden:
+      summary: Forbidden
+      value:
+        code: forbidden
+        message: You do not have permission to perform this action.
+        request_id: 00000000-0000-0000-0000-000000000000
+        details:
+          required_scope: qrph:write
+    not-found:
+      summary: Not Found
+      value:
+        code: not-found
+        message: The requested resource could not be found.
+        request_id: 00000000-0000-0000-0000-000000000000
+        details:
+          resource: qrph-request
+          identifier: qr_123
+    conflict:
+      summary: Conflict
+      value:
+        code: conflict
+        message: The request could not be completed due to a conflict.
+        request_id: 00000000-0000-0000-0000-000000000000
+        details:
+          resource: org
+          field: email
+    rate-limited:
+      summary: Rate Limited
+      value:
+        code: rate-limited
+        message: Too many requests were made in a short period of time.
+        request_id: 00000000-0000-0000-0000-000000000000
+        details:
+          retry_after_seconds: 5
+    provider-timeout:
+      summary: Provider Timeout
+      value:
+        code: provider-timeout
+        message: The upstream provider did not respond in time.
+        request_id: 00000000-0000-0000-0000-000000000000
+        details:
+          provider: ALLBANK
+          timeout_seconds: 30
+    provider-rejected:
+      summary: Provider Rejected
+      value:
+        code: provider-rejected
+        message: The upstream provider rejected the request.
+        request_id: 00000000-0000-0000-0000-000000000000
+        details:
+          provider: ALLBANK
+          provider_code: QRP-1234
+    downstream-bad-request:
+      summary: Downstream Bad Request
+      value:
+        code: downstream-bad-request
+        message: We sent a bad request to a downstream provider.
+        request_id: 00000000-0000-0000-0000-000000000000
+        details:
+          provider: ALLBANK
+          reason: Invalid amount format
+    internal-error:
+      summary: Internal Error
+      value:
+        code: internal-error
+        message: An unexpected error occurred.
+        request_id: 00000000-0000-0000-0000-000000000000
+  schemas:
+    BankCodeCollection:
+      example:
+        data:
+        - code: code
+          name: name
+        - code: code
+          name: name
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/BankCodeEntry"
+          type: array
+      required:
+      - data
+      title: BankCodeCollection
+    BankCodeEntry:
+      example:
+        code: code
+        name: name
+      properties:
+        code:
+          title: Code
+          type: string
+        name:
+          nullable: true
+          type: string
+      required:
+      - code
+      title: BankCodeEntry
+    CancelQRPhRequest:
+      example:
+        cancellation_reason: cancellation_reason
+      properties:
+        cancellation_reason:
+          maxLength: 200
+          nullable: true
+          type: string
+      title: CancelQRPhRequest
+    CanonicalCreateQRReq:
+      example:
+        amount: 400414
+        metadata:
+          key: ""
+        reference_id: reference_id
+        type: static
+        submerchant_id: submerchant_id
+      properties:
+        reference_id:
+          description: Client-provided identifier used to correlate the QRPh request.
+          maxLength: 20
+          title: Reference Id
+          type: string
+        type:
+          description: "QR type, dynamic for fixed payments or static for amount-less\
+            \ flows."
+          enum:
+          - static
+          - dynamic
+          title: Type
+          type: string
+        amount:
+          maximum: 5000000.0
+          nullable: true
+          type: integer
+        submerchant_id:
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties: true
+          nullable: true
+          type: object
+      required:
+      - reference_id
+      - type
+      title: CanonicalCreateQRReq
+    HTTPValidationError:
+      example:
+        detail:
+        - msg: msg
+          loc:
+          - ValidationError_loc_inner
+          - ValidationError_loc_inner
+          type: type
+        - msg: msg
+          loc:
+          - ValidationError_loc_inner
+          - ValidationError_loc_inner
+          type: type
+      properties:
+        detail:
+          items:
+            $ref: "#/components/schemas/ValidationError"
+          type: array
+      title: HTTPValidationError
+    PaymentCollectionResponse:
+      example:
+        next_cursor: next_cursor
+        data:
+        - paid_at: paid_at
+          qrph_id: qrph_id
+          amount: 0
+          updated_at: updated_at
+          livemode: true
+          created_at: created_at
+          magpie_mdr: magpie_mdr
+          id: id
+          payment_source: payment_source
+          merchant_net_amount: 1
+          status: status
+          magpie_fee: 6
+        - paid_at: paid_at
+          qrph_id: qrph_id
+          amount: 0
+          updated_at: updated_at
+          livemode: true
+          created_at: created_at
+          magpie_mdr: magpie_mdr
+          id: id
+          payment_source: payment_source
+          merchant_net_amount: 1
+          status: status
+          magpie_fee: 6
+        limit: 5
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/PaymentResponse"
+          type: array
+        limit:
+          title: Limit
+          type: integer
+        next_cursor:
+          title: Next Cursor
+          type: string
+      required:
+      - data
+      - limit
+      - next_cursor
+      title: PaymentCollectionResponse
+    PaymentResponse:
+      additionalProperties: true
+      example:
+        paid_at: paid_at
+        qrph_id: qrph_id
+        amount: 0
+        updated_at: updated_at
+        livemode: true
+        created_at: created_at
+        magpie_mdr: magpie_mdr
+        id: id
+        payment_source: payment_source
+        merchant_net_amount: 1
+        status: status
+        magpie_fee: 6
+      properties:
+        id:
+          description: Unique identifier for the payment record.
+          title: Id
+          type: string
+        qrph_id:
+          description: Associated QRPh request identifier.
+          title: Qrph Id
+          type: string
+        status:
+          nullable: true
+          type: string
+        amount:
+          nullable: true
+          type: integer
+        magpie_mdr:
+          nullable: true
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+          type: string
+        magpie_fee:
+          nullable: true
+          type: integer
+        merchant_net_amount:
+          nullable: true
+          type: integer
+        payment_source:
+          nullable: true
+          type: string
+        paid_at:
+          nullable: true
+          type: string
+        created_at:
+          description: ISO timestamp when the payment record was created.
+          title: Created At
+          type: string
+        updated_at:
+          description: ISO timestamp when the payment record was last updated.
+          title: Updated At
+          type: string
+        livemode:
+          description: Whether the payment was processed in live mode.
+          title: Livemode
+          type: boolean
+      required:
+      - created_at
+      - id
+      - livemode
+      - qrph_id
+      - updated_at
+      title: PaymentResponse
+    PaymentSingleResponse:
+      example:
+        data:
+          paid_at: paid_at
+          qrph_id: qrph_id
+          amount: 0
+          updated_at: updated_at
+          livemode: true
+          created_at: created_at
+          magpie_mdr: magpie_mdr
+          id: id
+          payment_source: payment_source
+          merchant_net_amount: 1
+          status: status
+          magpie_fee: 6
+      properties:
+        data:
+          $ref: "#/components/schemas/PaymentResponse"
+      required:
+      - data
+      title: PaymentSingleResponse
+    PayoutCollectionResponse:
+      example:
+        next_cursor: next_cursor
+        data:
+        - amount: 0
+          metadata:
+            key: ""
+          failure_code: failure_code
+          reference_id: reference_id
+          livemode: true
+          purpose: purpose
+          source_account_id: source_account_id
+          channel: channel
+          destination:
+            bank_code: bank_code
+            account_number: account_number
+            last_name: last_name
+            first_name: first_name
+          created_at: created_at
+          failure_message: failure_message
+          magpie_fee: 6
+          provider_ref:
+            key: ""
+          provider_message: provider_message
+          completed_at: completed_at
+          updated_at: updated_at
+          provider: provider
+          id: id
+          failed_at: failed_at
+          posted_at: posted_at
+          status: status
+        - amount: 0
+          metadata:
+            key: ""
+          failure_code: failure_code
+          reference_id: reference_id
+          livemode: true
+          purpose: purpose
+          source_account_id: source_account_id
+          channel: channel
+          destination:
+            bank_code: bank_code
+            account_number: account_number
+            last_name: last_name
+            first_name: first_name
+          created_at: created_at
+          failure_message: failure_message
+          magpie_fee: 6
+          provider_ref:
+            key: ""
+          provider_message: provider_message
+          completed_at: completed_at
+          updated_at: updated_at
+          provider: provider
+          id: id
+          failed_at: failed_at
+          posted_at: posted_at
+          status: status
+        limit: 1
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/PayoutResponse"
+          type: array
+        limit:
+          title: Limit
+          type: integer
+        next_cursor:
+          title: Next Cursor
+          type: string
+      required:
+      - data
+      - limit
+      - next_cursor
+      title: PayoutCollectionResponse
+    PayoutCreateRequest:
+      example:
+        amount: 0
+        metadata:
+          key: ""
+        reference_id: reference_id
+        purpose: purpose
+        source_account_id: source_account_id
+        channel: instapay
+        destination:
+          bank_code: bank_code
+          account_number: account_number
+          last_name: last_name
+          first_name: first_name
+      properties:
+        reference_id:
+          description: Client-provided reference for the payout.
+          minLength: 1
+          title: Reference Id
+          type: string
+        channel:
+          description: Channel to use for the payout.
+          enum:
+          - instapay
+          - pesonet
+          title: Channel
+          type: string
+        amount:
+          description: Amount in centavos.
+          title: Amount
+          type: integer
+        source_account_id:
+          description: Org bank account ID to debit.
+          minLength: 1
+          title: Source Account Id
+          type: string
+        destination:
+          $ref: "#/components/schemas/PayoutDestination"
+        purpose:
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties: true
+          nullable: true
+          type: object
+      required:
+      - amount
+      - channel
+      - destination
+      - reference_id
+      - source_account_id
+      title: PayoutCreateRequest
+    PayoutDestination:
+      example:
+        bank_code: bank_code
+        account_number: account_number
+        last_name: last_name
+        first_name: first_name
+      properties:
+        first_name:
+          nullable: true
+          type: string
+        last_name:
+          nullable: true
+          type: string
+        bank_code:
+          description: Bank code for the beneficiary account.
+          title: Bank Code
+          type: string
+        account_number:
+          description: Beneficiary account number.
+          title: Account Number
+          type: string
+      required:
+      - account_number
+      - bank_code
+      title: PayoutDestination
+    PayoutDestinationResponse:
+      example:
+        bank_code: bank_code
+        account_number: account_number
+        last_name: last_name
+        first_name: first_name
+      properties:
+        first_name:
+          nullable: true
+          type: string
+        last_name:
+          nullable: true
+          type: string
+        bank_code:
+          nullable: true
+          type: string
+        account_number:
+          nullable: true
+          type: string
+      title: PayoutDestinationResponse
+    PayoutResponse:
+      additionalProperties: {}
+      example:
+        amount: 0
+        metadata:
+          key: ""
+        failure_code: failure_code
+        reference_id: reference_id
+        livemode: true
+        purpose: purpose
+        source_account_id: source_account_id
+        channel: channel
+        destination:
+          bank_code: bank_code
+          account_number: account_number
+          last_name: last_name
+          first_name: first_name
+        created_at: created_at
+        failure_message: failure_message
+        magpie_fee: 6
+        provider_ref:
+          key: ""
+        provider_message: provider_message
+        completed_at: completed_at
+        updated_at: updated_at
+        provider: provider
+        id: id
+        failed_at: failed_at
+        posted_at: posted_at
+        status: status
+      properties:
+        id:
+          description: Unique payout identifier.
+          title: Id
+          type: string
+        reference_id:
+          description: Client-provided reference tying to the payout request.
+          title: Reference Id
+          type: string
+        channel:
+          description: Payment channel (instapay/pesonet).
+          title: Channel
+          type: string
+        amount:
+          description: Amount in centavos.
+          title: Amount
+          type: integer
+        magpie_fee:
+          nullable: true
+          type: integer
+        source_account_id:
+          description: Org bank account used as source.
+          title: Source Account Id
+          type: string
+        destination:
+          $ref: "#/components/schemas/PayoutDestinationResponse"
+        purpose:
+          nullable: true
+          type: string
+        status:
+          description: Current status of the payout.
+          title: Status
+          type: string
+        provider:
+          nullable: true
+          type: string
+        provider_ref:
+          additionalProperties: true
+          description: Provider-specific reference data.
+          title: Provider Ref
+          type: object
+        provider_message:
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties: true
+          description: Merchant-defined metadata.
+          title: Metadata
+          type: object
+        created_at:
+          description: ISO timestamp when payout was created.
+          title: Created At
+          type: string
+        updated_at:
+          description: ISO timestamp when the payout was last modified.
+          title: Updated At
+          type: string
+        posted_at:
+          nullable: true
+          type: string
+        completed_at:
+          nullable: true
+          type: string
+        failed_at:
+          nullable: true
+          type: string
+        failure_code:
+          nullable: true
+          type: string
+        failure_message:
+          nullable: true
+          type: string
+        livemode:
+          description: True when the payout was created in live mode.
+          title: Livemode
+          type: boolean
+      required:
+      - amount
+      - channel
+      - created_at
+      - destination
+      - id
+      - livemode
+      - reference_id
+      - source_account_id
+      - status
+      - updated_at
+      title: PayoutResponse
+    PayoutSingleResponse:
+      example:
+        data:
+          amount: 0
+          metadata:
+            key: ""
+          failure_code: failure_code
+          reference_id: reference_id
+          livemode: true
+          purpose: purpose
+          source_account_id: source_account_id
+          channel: channel
+          destination:
+            bank_code: bank_code
+            account_number: account_number
+            last_name: last_name
+            first_name: first_name
+          created_at: created_at
+          failure_message: failure_message
+          magpie_fee: 6
+          provider_ref:
+            key: ""
+          provider_message: provider_message
+          completed_at: completed_at
+          updated_at: updated_at
+          provider: provider
+          id: id
+          failed_at: failed_at
+          posted_at: posted_at
+          status: status
+      properties:
+        data:
+          $ref: "#/components/schemas/PayoutResponse"
+      required:
+      - data
+      title: PayoutSingleResponse
+    QRPhCollectionResponse:
+      example:
+        next_cursor: next_cursor
+        data:
+        - cancelled_at: cancelled_at
+          amount: 0
+          metadata:
+            key: ""
+          checkout_url: checkout_url
+          reference_id: reference_id
+          livemode: true
+          created_at: created_at
+          type: static
+          submerchant_id: submerchant_id
+          cancellation_reason: cancellation_reason
+          paid_at: paid_at
+          qrph_image: qrph_image
+          qrph_payload: qrph_payload
+          expires_at: expires_at
+          updated_at: updated_at
+          payment_id: payment_id
+          id: id
+          status: active
+        - cancelled_at: cancelled_at
+          amount: 0
+          metadata:
+            key: ""
+          checkout_url: checkout_url
+          reference_id: reference_id
+          livemode: true
+          created_at: created_at
+          type: static
+          submerchant_id: submerchant_id
+          cancellation_reason: cancellation_reason
+          paid_at: paid_at
+          qrph_image: qrph_image
+          qrph_payload: qrph_payload
+          expires_at: expires_at
+          updated_at: updated_at
+          payment_id: payment_id
+          id: id
+          status: active
+        limit: 6
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/QRPhResponse"
+          type: array
+        limit:
+          title: Limit
+          type: integer
+        next_cursor:
+          title: Next Cursor
+          type: string
+      required:
+      - data
+      - limit
+      - next_cursor
+      title: QRPhCollectionResponse
+    QRPhResponse:
+      additionalProperties: {}
+      example:
+        cancelled_at: cancelled_at
+        amount: 0
+        metadata:
+          key: ""
+        checkout_url: checkout_url
+        reference_id: reference_id
+        livemode: true
+        created_at: created_at
+        type: static
+        submerchant_id: submerchant_id
+        cancellation_reason: cancellation_reason
+        paid_at: paid_at
+        qrph_image: qrph_image
+        qrph_payload: qrph_payload
+        expires_at: expires_at
+        updated_at: updated_at
+        payment_id: payment_id
+        id: id
+        status: active
+      properties:
+        id:
+          description: Unique identifier for the QRPh request.
+          title: Id
+          type: string
+        reference_id:
+          description: Client-provided reference for correlating the request.
+          title: Reference Id
+          type: string
+        type:
+          description: "QR code type, either static or dynamic."
+          enum:
+          - static
+          - dynamic
+          title: Type
+          type: string
+        amount:
+          nullable: true
+          type: integer
+        submerchant_id:
+          nullable: true
+          type: string
+        status:
+          description: Current status of the QRPh request.
+          enum:
+          - active
+          - paid
+          - cancelled
+          - expired
+          title: Status
+          type: string
+        metadata:
+          additionalProperties: true
+          nullable: true
+          type: object
+        qrph_payload:
+          nullable: true
+          type: string
+        qrph_image:
+          nullable: true
+          type: string
+        checkout_url:
+          nullable: true
+          type: string
+        payment_id:
+          nullable: true
+          type: string
+        paid_at:
+          nullable: true
+          type: string
+        expires_at:
+          nullable: true
+          type: string
+        cancelled_at:
+          nullable: true
+          type: string
+        cancellation_reason:
+          nullable: true
+          type: string
+        created_at:
+          description: ISO timestamp when the QRPh request was created.
+          title: Created At
+          type: string
+        updated_at:
+          description: ISO timestamp when the QRPh request was last updated.
+          title: Updated At
+          type: string
+        livemode:
+          description: Indicates whether the request was created in live or test mode.
+          title: Livemode
+          type: boolean
+      required:
+      - created_at
+      - id
+      - livemode
+      - reference_id
+      - status
+      - type
+      - updated_at
+      title: QRPhResponse
+    QRPhSingleResponse:
+      example:
+        data:
+          cancelled_at: cancelled_at
+          amount: 0
+          metadata:
+            key: ""
+          checkout_url: checkout_url
+          reference_id: reference_id
+          livemode: true
+          created_at: created_at
+          type: static
+          submerchant_id: submerchant_id
+          cancellation_reason: cancellation_reason
+          paid_at: paid_at
+          qrph_image: qrph_image
+          qrph_payload: qrph_payload
+          expires_at: expires_at
+          updated_at: updated_at
+          payment_id: payment_id
+          id: id
+          status: active
+      properties:
+        data:
+          $ref: "#/components/schemas/QRPhResponse"
+      required:
+      - data
+      title: QRPhSingleResponse
+    ValidationError:
+      example:
+        msg: msg
+        loc:
+        - ValidationError_loc_inner
+        - ValidationError_loc_inner
+        type: type
+      properties:
+        loc:
+          items:
+            $ref: "#/components/schemas/ValidationError_loc_inner"
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ApiError:
+      properties:
+        code:
+          description: Stable kebab-case identifier for the error.
+          type: string
+        message:
+          description: Human readable summary of what went wrong.
+          type: string
+        details:
+          additionalProperties: {}
+          description: Optional machine readable context for the error.
+        request_id:
+          description: Correlation identifier attached to the request/response.
+          format: uuid
+          type: string
+      required:
+      - code
+      - message
+      - request_id
+      title: ApiError
+    ValidationError_loc_inner:
+      anyOf:
+      - type: string
+      - type: integer
+  securitySchemes:
+    basicAuth:
+      description: "Use Basic authentication where the API key is the username and\
+        \ the password is empty. Send `Authorization: Basic <base64(api_key:)>`."
+      scheme: basic
+      type: http
+x-magpie-error-catalog:
+- code: validation-error
+  status: 422
+  message: Request validation failed.
+  details:
+    errors:
+    - loc:
+      - body
+      - payload
+      - reference_id
+      msg: field required
+      type: missing
+- code: unauthorized
+  status: 401
+  message: Authentication credentials were missing or invalid.
+  details:
+    reason: missing-api-key
+- code: forbidden
+  status: 403
+  message: You do not have permission to perform this action.
+  details:
+    required_scope: qrph:write
+- code: not-found
+  status: 404
+  message: The requested resource could not be found.
+  details:
+    resource: qrph-request
+    identifier: qr_123
+- code: conflict
+  status: 409
+  message: The request could not be completed due to a conflict.
+  details:
+    resource: org
+    field: email
+- code: rate-limited
+  status: 429
+  message: Too many requests were made in a short period of time.
+  details:
+    retry_after_seconds: 5
+- code: provider-timeout
+  status: 504
+  message: The upstream provider did not respond in time.
+  details:
+    provider: ALLBANK
+    timeout_seconds: 30
+- code: provider-rejected
+  status: 502
+  message: The upstream provider rejected the request.
+  details:
+    provider: ALLBANK
+    provider_code: QRP-1234
+- code: downstream-bad-request
+  status: 502
+  message: We sent a bad request to a downstream provider.
+  details:
+    provider: ALLBANK
+    reason: Invalid amount format
+- code: internal-error
+  status: 500
+  message: An unexpected error occurred.
+x-magpie-provider-errors:
+  allbank:
+    return_codes:
+      instapay:
+        "411":
+          magpie_code: provider_maintenance
+          magpie_message: AllBank is performing maintenance. Please retry the payout
+            shortly.
+          provider_message: "Service Maintenance, please try again later"
+        "412":
+          magpie_code: provider_maintenance
+          magpie_message: AllBank is performing maintenance. Please retry the payout
+            shortly.
+          provider_message: "Ongoing Maintenance, please try again later"
+        "413":
+          magpie_code: destination_bank_maintenance
+          magpie_message: The receiving bank is offline for maintenance. Please try
+            again later.
+          provider_message: Destination Bank is on scheduled maintenance until <TimeEnd>
+        "414":
+          magpie_code: duplicate_payout
+          magpie_message: AllBank flagged this payout as a duplicate. Use a new reference
+            and retry.
+          provider_message: Duplicate transaction
+        "415":
+          magpie_code: invalid_destination
+          magpie_message: AllBank could not validate the beneficiary account. Please
+            double-check the details.
+          provider_message: Invalid destination details
+        "416":
+          magpie_code: same_source_destination
+          magpie_message: Source and destination accounts must be different for this
+            payout.
+          provider_message: You are not allowed to send to your own bank
+        "420":
+          magpie_code: insufficient_funds
+          magpie_message: The funding account does not have enough balance for this
+            payout.
+          provider_message: Source Acct. Insufficient Txn Amt.
+        "425":
+          magpie_code: invalid_reference
+          magpie_message: AllBank could not find this reference ID. Submit a new payout
+            reference.
+          provider_message: Invalid Reference ID
+        "2":
+          magpie_code: authentication_failed
+          magpie_message: AllBank rejected our credentials. Please contact Magpie
+            support.
+          provider_message: Access Denied
+      pesonet:
+        "431":
+          magpie_code: duplicate_payout
+          magpie_message: AllBank flagged this payout as a duplicate. Use a new reference
+            and retry.
+          provider_message: Duplicate transaction.
+        "432":
+          magpie_code: invalid_destination
+          magpie_message: AllBank could not validate the beneficiary account. Please
+            double-check the details.
+          provider_message: Invalid destination details
+        "433":
+          magpie_code: same_source_destination
+          magpie_message: Source and destination accounts must be different for this
+            payout.
+          provider_message: You are not allowed to send to your own bank.
+        "434":
+          magpie_code: account_in_use
+          magpie_message: The receiving account is busy. Wait a few minutes and retry
+            the payout.
+          provider_message: "Account being used, please try again later."
+        "435":
+          magpie_code: posting_failed
+          magpie_message: AllBank could not post this payout. We are reviewing the
+            issue.
+          provider_message: "Post PE:<post_result> EN: <casa_error_no> : <msg>"
+        "441":
+          magpie_code: invalid_reference
+          magpie_message: AllBank could not find this reference ID. Submit a new payout
+            reference.
+          provider_message: Invalid Reference ID
+        "2":
+          magpie_code: authentication_failed
+          magpie_message: AllBank rejected our credentials. Please contact Magpie
+            support.
+          provider_message: Access Denied
+      intrabank:
+        "414":
+          magpie_code: duplicate_payout
+          magpie_message: AllBank flagged this payout as a duplicate. Use a new reference
+            and retry.
+          provider_message: Duplicate transaction
+        "420":
+          magpie_code: insufficient_funds
+          magpie_message: The funding account does not have enough balance for this
+            payout.
+          provider_message: Source Acct. Insufficient Txn Amt.
+        "467":
+          magpie_code: invalid_amount
+          magpie_message: The payout amount is invalid for this channel. Please review
+            the limits.
+          provider_message: Invalid Amount
+        "468":
+          magpie_code: invalid_destination
+          magpie_message: AllBank could not validate the beneficiary account. Please
+            double-check the details.
+          provider_message: Invalid Destination AcctNo.
+        "469":
+          magpie_code: amount_exceeds_limit
+          magpie_message: The payout exceeds AllBank's limit for this channel.
+          provider_message: "Invalid Amount: Maximum exceeded"
+        "470":
+          magpie_code: invalid_source_account
+          magpie_message: The funding account is not allowed for this type of payout.
+          provider_message: "Invalid Source Account, not within Own Account"
+        "471":
+          magpie_code: invalid_reference
+          magpie_message: AllBank could not find this reference ID. Submit a new payout
+            reference.
+          provider_message: Invalid Reference ID
+        "2":
+          magpie_code: authentication_failed
+          magpie_message: AllBank rejected our credentials. Please contact Magpie
+            support.
+          provider_message: Access Denied
+    status_hints:
+      transactionforbidden:
+        magpie_code: provider_rejected
+        magpie_message: AllBank rejected this payout. Contact support if the issue
+          persists.
+      amountexceedsagreedlimit:
+        magpie_code: amount_exceeds_limit
+        magpie_message: The payout exceeds AllBank's limit for this channel.
+      banksystemprocessingerror:
+        magpie_code: provider_processing_error
+        magpie_message: AllBank encountered a processing issue. We will retry automatically.
+      transmissonaborted:
+        magpie_code: provider_transport_error
+        magpie_message: AllBank aborted the transfer. Please retry the payout.
+      invalid file format:
+        magpie_code: invalid_payload_format
+        magpie_message: AllBank could not understand the payout payload. Please contact
+          support.
+      syntaxerror:
+        magpie_code: invalid_payload_format
+        magpie_message: AllBank could not understand the payout payload. Please contact
+          support.
+      closedaccountnumber:
+        magpie_code: destination_account_closed
+        magpie_message: The receiving account is closed. Confirm the beneficiary details.
+      orderrejected:
+        magpie_code: provider_rejected
+        magpie_message: AllBank rejected this payout. Contact support if the issue
+          persists.
+      transactionnotsupported:
+        magpie_code: transaction_not_supported
+        magpie_message: This payout type is not supported for the receiving bank.
+      duplicatepayment:
+        magpie_code: duplicate_payout
+        magpie_message: AllBank flagged this payout as a duplicate. Use a new reference
+          and retry.
+      invalidcreditorbankidentifier:
+        magpie_code: invalid_destination_bank
+        magpie_message: The receiving bank identifier is invalid or not supported.
+      waitingtimeexpired:
+        magpie_code: provider_timeout
+        magpie_message: AllBank timed out while routing the payout. Please retry.
+      incorrectaccountnumber:
+        magpie_code: invalid_destination
+        magpie_message: AllBank could not validate the beneficiary account. Please
+          double-check the details.
+      invalidcreditoraccountnumber:
+        magpie_code: invalid_destination
+        magpie_message: AllBank could not validate the beneficiary account. Please
+          double-check the details.
+      blockedaccount:
+        magpie_code: destination_account_blocked
+        magpie_message: The receiving account is blocked. Ask the beneficiary to contact
+          their bank.
+      invalidcutofftime:
+        magpie_code: past_cutoff
+        magpie_message: This payout was submitted after AllBank's cutoff window.
+      offlinecreditoragent:
+        magpie_code: destination_bank_offline
+        magpie_message: The receiving bank is offline. Please retry later.
+      receiving bank - logged off:
+        magpie_code: destination_bank_offline
+        magpie_message: The receiving bank is offline. Please retry later.
+      ac03:
+        magpie_code: invalid_destination
+        magpie_message: AllBank could not validate the beneficiary account. Please
+          double-check the details.
+      ac06:
+        magpie_code: destination_account_blocked
+        magpie_message: The receiving account is blocked. Ask the beneficiary to contact
+          their bank.
+      be01:
+        magpie_code: beneficiary_details_mismatch
+        magpie_message: Beneficiary details do not match the receiving bank's records.
+      debtor bank is not registered:
+        magpie_code: debtor_bank_not_registered
+        magpie_message: The sending bank is not registered on this network.
+      ds07:
+        magpie_code: payout_completed
+        magpie_message: Payout settled successfully via AllBank.

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.openapitools.client.apis.QRPhRequestsApiTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-11-23T10:00:01.920Z" hostname="Dom-MacBook" time="0.003">
+  <properties/>
+  <testcase name="should test cancelQrphV1QrphIdCancelPost" classname="org.openapitools.client.apis.QRPhRequestsApiTest" time="0.003"/>
+  <testcase name="should test createQrphV1QrphPost" classname="org.openapitools.client.apis.QRPhRequestsApiTest" time="0.002"/>
+  <testcase name="should test getQrphStatusV1QrphIdGet" classname="org.openapitools.client.apis.QRPhRequestsApiTest" time="0.001"/>
+  <testcase name="should test listQrphV1QrphGet" classname="org.openapitools.client.apis.QRPhRequestsApiTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

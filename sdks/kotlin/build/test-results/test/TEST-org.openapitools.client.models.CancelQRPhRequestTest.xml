@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.openapitools.client.models.CancelQRPhRequestTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-11-23T10:00:01.822Z" hostname="Dom-MacBook" time="0.0">
+  <properties/>
+  <testcase name="should test cancellationReason" classname="org.openapitools.client.models.CancelQRPhRequestTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.openapitools.client.models.QRPhResponseTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2025-11-23T10:00:01.931Z" hostname="Dom-MacBook" time="0.007">
+  <properties/>
+  <testcase name="should test id" classname="org.openapitools.client.models.QRPhResponseTest" time="0.006"/>
+  <testcase name="should test referenceId" classname="org.openapitools.client.models.QRPhResponseTest" time="0.005"/>
+  <testcase name="should test type" classname="org.openapitools.client.models.QRPhResponseTest" time="0.005"/>
+  <testcase name="should test status" classname="org.openapitools.client.models.QRPhResponseTest" time="0.004"/>
+  <testcase name="should test createdAt" classname="org.openapitools.client.models.QRPhResponseTest" time="0.004"/>
+  <testcase name="should test updatedAt" classname="org.openapitools.client.models.QRPhResponseTest" time="0.004"/>
+  <testcase name="should test livemode" classname="org.openapitools.client.models.QRPhResponseTest" time="0.004"/>
+  <testcase name="should test amount" classname="org.openapitools.client.models.QRPhResponseTest" time="0.003"/>
+  <testcase name="should test submerchantId" classname="org.openapitools.client.models.QRPhResponseTest" time="0.003"/>
+  <testcase name="should test metadata" classname="org.openapitools.client.models.QRPhResponseTest" time="0.003"/>
+  <testcase name="should test qrphPayload" classname="org.openapitools.client.models.QRPhResponseTest" time="0.002"/>
+  <testcase name="should test qrphImage" classname="org.openapitools.client.models.QRPhResponseTest" time="0.002"/>
+  <testcase name="should test checkoutUrl" classname="org.openapitools.client.models.QRPhResponseTest" time="0.002"/>
+  <testcase name="should test paymentId" classname="org.openapitools.client.models.QRPhResponseTest" time="0.001"/>
+  <testcase name="should test paidAt" classname="org.openapitools.client.models.QRPhResponseTest" time="0.002"/>
+  <testcase name="should test expiresAt" classname="org.openapitools.client.models.QRPhResponseTest" time="0.001"/>
+  <testcase name="should test cancelledAt" classname="org.openapitools.client.models.QRPhResponseTest" time="0.001"/>
+  <testcase name="should test cancellationReason" classname="org.openapitools.client.models.QRPhResponseTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
