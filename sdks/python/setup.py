@@ -20,7 +20,7 @@ from setuptools import setup, find_packages  # noqa: H301
 #
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
-NAME = "magpiepay"
+NAME = "domdanao-magpiepay"
 VERSION = "1.0.0a1"
 PYTHON_REQUIRES = ">= 3.9"
 REQUIRES = [
