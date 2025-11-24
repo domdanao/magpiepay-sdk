@@ -1,14 +1,14 @@
 # magpiepay.ReferencesApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_bank_codes_v1_references_bank_codes_get**](ReferencesApi.md#list_bank_codes_v1_references_bank_codes_get) | **GET** /v1/references/bank_codes | List Bank Codes
+[**list_bank_codes**](ReferencesApi.md#list_bank_codes) | **GET** /v1/references/bank_codes | List Bank Codes
 
 
-# **list_bank_codes_v1_references_bank_codes_get**
-> BankCodeCollection list_bank_codes_v1_references_bank_codes_get(x_api_key=x_api_key, authorization=authorization)
+# **list_bank_codes**
+> BankCodeCollection list_bank_codes(x_api_key=x_api_key, authorization=authorization)
 
 List Bank Codes
 
@@ -22,10 +22,10 @@ from magpiepay.models.bank_code_collection import BankCodeCollection
 from magpiepay.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.magpiepay.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = magpiepay.Configuration(
-    host = "http://localhost"
+    host = "https://api.magpiepay.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -48,11 +48,11 @@ with magpiepay.ApiClient(configuration) as api_client:
 
     try:
         # List Bank Codes
-        api_response = api_instance.list_bank_codes_v1_references_bank_codes_get(x_api_key=x_api_key, authorization=authorization)
-        print("The response of ReferencesApi->list_bank_codes_v1_references_bank_codes_get:\n")
+        api_response = api_instance.list_bank_codes(x_api_key=x_api_key, authorization=authorization)
+        print("The response of ReferencesApi->list_bank_codes:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ReferencesApi->list_bank_codes_v1_references_bank_codes_get: %s\n" % e)
+        print("Exception when calling ReferencesApi->list_bank_codes: %s\n" % e)
 ```
 
 

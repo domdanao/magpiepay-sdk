@@ -1,17 +1,17 @@
 # magpiepay.QRPhRequestsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cancel_qrph_v1_qrph_id_cancel_post**](QRPhRequestsApi.md#cancel_qrph_v1_qrph_id_cancel_post) | **POST** /v1/qrph/{id}/cancel | Cancel a QRPh request
-[**create_qrph_v1_qrph_post**](QRPhRequestsApi.md#create_qrph_v1_qrph_post) | **POST** /v1/qrph/ | Create a QRPh request
-[**get_qrph_status_v1_qrph_id_get**](QRPhRequestsApi.md#get_qrph_status_v1_qrph_id_get) | **GET** /v1/qrph/{id} | Get QRPh status
-[**list_qrph_v1_qrph_get**](QRPhRequestsApi.md#list_qrph_v1_qrph_get) | **GET** /v1/qrph/ | List QRPh requests
+[**cancel_qrph**](QRPhRequestsApi.md#cancel_qrph) | **POST** /v1/qrph/{id}/cancel | Cancel a QRPh request
+[**create_qrph**](QRPhRequestsApi.md#create_qrph) | **POST** /v1/qrph/ | Create a QRPh request
+[**get_qrph**](QRPhRequestsApi.md#get_qrph) | **GET** /v1/qrph/{id} | Get QRPh status
+[**list_qrph**](QRPhRequestsApi.md#list_qrph) | **GET** /v1/qrph/ | List QRPh requests
 
 
-# **cancel_qrph_v1_qrph_id_cancel_post**
-> QRPhSingleResponse cancel_qrph_v1_qrph_id_cancel_post(id, x_api_key=x_api_key, authorization=authorization, cancel_qrph_request=cancel_qrph_request)
+# **cancel_qrph**
+> QRPhSingleResponse cancel_qrph(id, x_api_key=x_api_key, authorization=authorization, cancel_qrph_request=cancel_qrph_request)
 
 Cancel a QRPh request
 
@@ -28,10 +28,10 @@ from magpiepay.models.qrph_single_response import QRPhSingleResponse
 from magpiepay.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.magpiepay.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = magpiepay.Configuration(
-    host = "http://localhost"
+    host = "https://api.magpiepay.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -56,11 +56,11 @@ with magpiepay.ApiClient(configuration) as api_client:
 
     try:
         # Cancel a QRPh request
-        api_response = api_instance.cancel_qrph_v1_qrph_id_cancel_post(id, x_api_key=x_api_key, authorization=authorization, cancel_qrph_request=cancel_qrph_request)
-        print("The response of QRPhRequestsApi->cancel_qrph_v1_qrph_id_cancel_post:\n")
+        api_response = api_instance.cancel_qrph(id, x_api_key=x_api_key, authorization=authorization, cancel_qrph_request=cancel_qrph_request)
+        print("The response of QRPhRequestsApi->cancel_qrph:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling QRPhRequestsApi->cancel_qrph_v1_qrph_id_cancel_post: %s\n" % e)
+        print("Exception when calling QRPhRequestsApi->cancel_qrph: %s\n" % e)
 ```
 
 
@@ -97,8 +97,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_qrph_v1_qrph_post**
-> QRPhSingleResponse create_qrph_v1_qrph_post(canonical_create_qr_req, x_api_key=x_api_key, authorization=authorization)
+# **create_qrph**
+> QRPhSingleResponse create_qrph(canonical_create_qr_req, x_api_key=x_api_key, authorization=authorization)
 
 Create a QRPh request
 
@@ -115,10 +115,10 @@ from magpiepay.models.qrph_single_response import QRPhSingleResponse
 from magpiepay.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.magpiepay.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = magpiepay.Configuration(
-    host = "http://localhost"
+    host = "https://api.magpiepay.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -142,11 +142,11 @@ with magpiepay.ApiClient(configuration) as api_client:
 
     try:
         # Create a QRPh request
-        api_response = api_instance.create_qrph_v1_qrph_post(canonical_create_qr_req, x_api_key=x_api_key, authorization=authorization)
-        print("The response of QRPhRequestsApi->create_qrph_v1_qrph_post:\n")
+        api_response = api_instance.create_qrph(canonical_create_qr_req, x_api_key=x_api_key, authorization=authorization)
+        print("The response of QRPhRequestsApi->create_qrph:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling QRPhRequestsApi->create_qrph_v1_qrph_post: %s\n" % e)
+        print("Exception when calling QRPhRequestsApi->create_qrph: %s\n" % e)
 ```
 
 
@@ -182,8 +182,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_qrph_status_v1_qrph_id_get**
-> QRPhSingleResponse get_qrph_status_v1_qrph_id_get(id, x_api_key=x_api_key, authorization=authorization)
+# **get_qrph**
+> QRPhSingleResponse get_qrph(id, x_api_key=x_api_key, authorization=authorization)
 
 Get QRPh status
 
@@ -199,10 +199,10 @@ from magpiepay.models.qrph_single_response import QRPhSingleResponse
 from magpiepay.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.magpiepay.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = magpiepay.Configuration(
-    host = "http://localhost"
+    host = "https://api.magpiepay.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -226,11 +226,11 @@ with magpiepay.ApiClient(configuration) as api_client:
 
     try:
         # Get QRPh status
-        api_response = api_instance.get_qrph_status_v1_qrph_id_get(id, x_api_key=x_api_key, authorization=authorization)
-        print("The response of QRPhRequestsApi->get_qrph_status_v1_qrph_id_get:\n")
+        api_response = api_instance.get_qrph(id, x_api_key=x_api_key, authorization=authorization)
+        print("The response of QRPhRequestsApi->get_qrph:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling QRPhRequestsApi->get_qrph_status_v1_qrph_id_get: %s\n" % e)
+        print("Exception when calling QRPhRequestsApi->get_qrph: %s\n" % e)
 ```
 
 
@@ -266,8 +266,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_qrph_v1_qrph_get**
-> QRPhCollectionResponse list_qrph_v1_qrph_get(limit=limit, cursor=cursor, reference_id=reference_id, x_api_key=x_api_key, authorization=authorization)
+# **list_qrph**
+> QRPhCollectionResponse list_qrph(limit=limit, cursor=cursor, reference_id=reference_id, x_api_key=x_api_key, authorization=authorization)
 
 List QRPh requests
 
@@ -283,10 +283,10 @@ from magpiepay.models.qrph_collection_response import QRPhCollectionResponse
 from magpiepay.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.magpiepay.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = magpiepay.Configuration(
-    host = "http://localhost"
+    host = "https://api.magpiepay.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -312,11 +312,11 @@ with magpiepay.ApiClient(configuration) as api_client:
 
     try:
         # List QRPh requests
-        api_response = api_instance.list_qrph_v1_qrph_get(limit=limit, cursor=cursor, reference_id=reference_id, x_api_key=x_api_key, authorization=authorization)
-        print("The response of QRPhRequestsApi->list_qrph_v1_qrph_get:\n")
+        api_response = api_instance.list_qrph(limit=limit, cursor=cursor, reference_id=reference_id, x_api_key=x_api_key, authorization=authorization)
+        print("The response of QRPhRequestsApi->list_qrph:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling QRPhRequestsApi->list_qrph_v1_qrph_get: %s\n" % e)
+        print("Exception when calling QRPhRequestsApi->list_qrph: %s\n" % e)
 ```
 
 

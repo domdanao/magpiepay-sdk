@@ -16,7 +16,7 @@ fun main() {
     println("Fetching bank codes...")
 
     try {
-        val response = api.listBankCodesV1ReferencesBankCodesGet(xAPIKey = apiKey).execute()
+        val response = api.listBankCodes(xAPIKey = apiKey).execute()
         if (response.isSuccessful) {
             println("Success! Found bank codes:")
             val collection = response.body()

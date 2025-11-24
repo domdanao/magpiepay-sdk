@@ -93,8 +93,8 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "",
-				Description: "No description provided",
+				URL: "https://api.magpiepay.com",
+				Description: "Production Server",
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{

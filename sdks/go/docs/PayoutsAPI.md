@@ -1,18 +1,18 @@
 # \PayoutsAPI
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreatePayoutV1PayoutsPost**](PayoutsAPI.md#CreatePayoutV1PayoutsPost) | **Post** /v1/payouts/ | Create a payout
-[**GetPayoutV1PayoutsPayoutIdGet**](PayoutsAPI.md#GetPayoutV1PayoutsPayoutIdGet) | **Get** /v1/payouts/{payout_id} | Get payout
-[**ListPayoutsV1PayoutsGet**](PayoutsAPI.md#ListPayoutsV1PayoutsGet) | **Get** /v1/payouts/ | List payouts
+[**CreatePayout**](PayoutsAPI.md#CreatePayout) | **Post** /v1/payouts/ | Create a payout
+[**GetPayout**](PayoutsAPI.md#GetPayout) | **Get** /v1/payouts/{payout_id} | Get payout
+[**ListPayouts**](PayoutsAPI.md#ListPayouts) | **Get** /v1/payouts/ | List payouts
 
 
 
-## CreatePayoutV1PayoutsPost
+## CreatePayout
 
-> PayoutSingleResponse CreatePayoutV1PayoutsPost(ctx).PayoutCreateRequest(payoutCreateRequest).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+> PayoutSingleResponse CreatePayout(ctx).PayoutCreateRequest(payoutCreateRequest).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 
 Create a payout
 
@@ -37,13 +37,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PayoutsAPI.CreatePayoutV1PayoutsPost(context.Background()).PayoutCreateRequest(payoutCreateRequest).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+	resp, r, err := apiClient.PayoutsAPI.CreatePayout(context.Background()).PayoutCreateRequest(payoutCreateRequest).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PayoutsAPI.CreatePayoutV1PayoutsPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PayoutsAPI.CreatePayout``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreatePayoutV1PayoutsPost`: PayoutSingleResponse
-	fmt.Fprintf(os.Stdout, "Response from `PayoutsAPI.CreatePayoutV1PayoutsPost`: %v\n", resp)
+	// response from `CreatePayout`: PayoutSingleResponse
+	fmt.Fprintf(os.Stdout, "Response from `PayoutsAPI.CreatePayout`: %v\n", resp)
 }
 ```
 
@@ -53,7 +53,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreatePayoutV1PayoutsPostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreatePayoutRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -80,9 +80,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetPayoutV1PayoutsPayoutIdGet
+## GetPayout
 
-> PayoutSingleResponse GetPayoutV1PayoutsPayoutIdGet(ctx, payoutId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+> PayoutSingleResponse GetPayout(ctx, payoutId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 
 Get payout
 
@@ -107,13 +107,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PayoutsAPI.GetPayoutV1PayoutsPayoutIdGet(context.Background(), payoutId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+	resp, r, err := apiClient.PayoutsAPI.GetPayout(context.Background(), payoutId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PayoutsAPI.GetPayoutV1PayoutsPayoutIdGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PayoutsAPI.GetPayout``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetPayoutV1PayoutsPayoutIdGet`: PayoutSingleResponse
-	fmt.Fprintf(os.Stdout, "Response from `PayoutsAPI.GetPayoutV1PayoutsPayoutIdGet`: %v\n", resp)
+	// response from `GetPayout`: PayoutSingleResponse
+	fmt.Fprintf(os.Stdout, "Response from `PayoutsAPI.GetPayout`: %v\n", resp)
 }
 ```
 
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetPayoutV1PayoutsPayoutIdGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetPayoutRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -154,9 +154,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListPayoutsV1PayoutsGet
+## ListPayouts
 
-> PayoutCollectionResponse ListPayoutsV1PayoutsGet(ctx).Limit(limit).Cursor(cursor).ReferenceId(referenceId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+> PayoutCollectionResponse ListPayouts(ctx).Limit(limit).Cursor(cursor).ReferenceId(referenceId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 
 List payouts
 
@@ -183,13 +183,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PayoutsAPI.ListPayoutsV1PayoutsGet(context.Background()).Limit(limit).Cursor(cursor).ReferenceId(referenceId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+	resp, r, err := apiClient.PayoutsAPI.ListPayouts(context.Background()).Limit(limit).Cursor(cursor).ReferenceId(referenceId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PayoutsAPI.ListPayoutsV1PayoutsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PayoutsAPI.ListPayouts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListPayoutsV1PayoutsGet`: PayoutCollectionResponse
-	fmt.Fprintf(os.Stdout, "Response from `PayoutsAPI.ListPayoutsV1PayoutsGet`: %v\n", resp)
+	// response from `ListPayouts`: PayoutCollectionResponse
+	fmt.Fprintf(os.Stdout, "Response from `PayoutsAPI.ListPayouts`: %v\n", resp)
 }
 ```
 
@@ -199,7 +199,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListPayoutsV1PayoutsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListPayoutsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

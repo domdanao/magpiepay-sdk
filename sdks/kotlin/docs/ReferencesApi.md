@@ -1,10 +1,10 @@
 # ReferencesApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**listBankCodesV1ReferencesBankCodesGet**](ReferencesApi.md#listBankCodesV1ReferencesBankCodesGet) | **GET** v1/references/bank_codes | List Bank Codes |
+| [**listBankCodes**](ReferencesApi.md#listBankCodes) | **GET** v1/references/bank_codes | List Bank Codes |
 
 
 
@@ -23,7 +23,7 @@ val webService = apiClient.createWebservice(ReferencesApi::class.java)
 val xAPIKey : kotlin.String = xAPIKey_example // kotlin.String | 
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 
-val result : BankCodeCollection = webService.listBankCodesV1ReferencesBankCodesGet(xAPIKey, authorization)
+val result : BankCodeCollection = webService.listBankCodes(xAPIKey, authorization)
 ```
 
 ### Parameters

@@ -28,7 +28,7 @@ interface QRPhRequestsApi {
      * @return [Call]<[QRPhSingleResponse]>
      */
     @POST("v1/qrph/{id}/cancel")
-    fun cancelQrphV1QrphIdCancelPost(@Path("id") id: kotlin.String, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null, @Body cancelQRPhRequest: CancelQRPhRequest? = null): Call<QRPhSingleResponse>
+    fun cancelQrph(@Path("id") id: kotlin.String, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null, @Body cancelQRPhRequest: CancelQRPhRequest? = null): Call<QRPhSingleResponse>
 
     /**
      * POST v1/qrph/
@@ -44,7 +44,7 @@ interface QRPhRequestsApi {
      * @return [Call]<[QRPhSingleResponse]>
      */
     @POST("v1/qrph/")
-    fun createQrphV1QrphPost(@Body canonicalCreateQRReq: CanonicalCreateQRReq, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<QRPhSingleResponse>
+    fun createQrph(@Body canonicalCreateQRReq: CanonicalCreateQRReq, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<QRPhSingleResponse>
 
     /**
      * GET v1/qrph/{id}
@@ -60,7 +60,7 @@ interface QRPhRequestsApi {
      * @return [Call]<[QRPhSingleResponse]>
      */
     @GET("v1/qrph/{id}")
-    fun getQrphStatusV1QrphIdGet(@Path("id") id: kotlin.String, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<QRPhSingleResponse>
+    fun getQrph(@Path("id") id: kotlin.String, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<QRPhSingleResponse>
 
     /**
      * GET v1/qrph/
@@ -78,6 +78,6 @@ interface QRPhRequestsApi {
      * @return [Call]<[QRPhCollectionResponse]>
      */
     @GET("v1/qrph/")
-    fun listQrphV1QrphGet(@Query("limit") limit: kotlin.Int? = 50, @Query("cursor") cursor: kotlin.String? = null, @Query("reference_id") referenceId: kotlin.String? = null, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<QRPhCollectionResponse>
+    fun listQrph(@Query("limit") limit: kotlin.Int? = 50, @Query("cursor") cursor: kotlin.String? = null, @Query("reference_id") referenceId: kotlin.String? = null, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<QRPhCollectionResponse>
 
 }

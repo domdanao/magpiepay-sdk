@@ -23,9 +23,9 @@ func main() {
 
 	fmt.Println("Fetching bank codes...")
 
-	resp, _, err := client.ReferencesAPI.ListBankCodesV1ReferencesBankCodesGet(context.Background()).XAPIKey(apiKey).Execute()
+	resp, _, err := client.ReferencesAPI.ListBankCodes(context.Background()).XAPIKey(apiKey).Execute()
 	if err != nil {
-		fmt.Printf("Error when calling ReferencesApi->ListBankCodesV1ReferencesBankCodesGet: %v\n", err)
+		fmt.Printf("Error when calling ReferencesApi->ListBankCodes: %v\n", err)
 		os.Exit(1)
 	}
 

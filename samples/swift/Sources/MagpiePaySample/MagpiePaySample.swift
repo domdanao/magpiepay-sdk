@@ -18,7 +18,7 @@ struct MagpiePaySample {
 
         let semaphore = DispatchSemaphore(value: 0)
 
-        ReferencesAPI.listBankCodesV1ReferencesBankCodesGet { result, error in
+        ReferencesAPI.listBankCodes { result, error in
             if let error = error {
                 print("Error: \(error)")
             } else if let result = result {

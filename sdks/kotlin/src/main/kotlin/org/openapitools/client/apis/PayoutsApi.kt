@@ -26,7 +26,7 @@ interface PayoutsApi {
      * @return [Call]<[PayoutSingleResponse]>
      */
     @POST("v1/payouts/")
-    fun createPayoutV1PayoutsPost(@Body payoutCreateRequest: PayoutCreateRequest, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<PayoutSingleResponse>
+    fun createPayout(@Body payoutCreateRequest: PayoutCreateRequest, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<PayoutSingleResponse>
 
     /**
      * GET v1/payouts/{payout_id}
@@ -42,7 +42,7 @@ interface PayoutsApi {
      * @return [Call]<[PayoutSingleResponse]>
      */
     @GET("v1/payouts/{payout_id}")
-    fun getPayoutV1PayoutsPayoutIdGet(@Path("payout_id") payoutId: kotlin.String, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<PayoutSingleResponse>
+    fun getPayout(@Path("payout_id") payoutId: kotlin.String, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<PayoutSingleResponse>
 
     /**
      * GET v1/payouts/
@@ -60,6 +60,6 @@ interface PayoutsApi {
      * @return [Call]<[PayoutCollectionResponse]>
      */
     @GET("v1/payouts/")
-    fun listPayoutsV1PayoutsGet(@Query("limit") limit: kotlin.Int? = 50, @Query("cursor") cursor: kotlin.String? = null, @Query("reference_id") referenceId: kotlin.String? = null, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<PayoutCollectionResponse>
+    fun listPayouts(@Query("limit") limit: kotlin.Int? = 50, @Query("cursor") cursor: kotlin.String? = null, @Query("reference_id") referenceId: kotlin.String? = null, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<PayoutCollectionResponse>
 
 }

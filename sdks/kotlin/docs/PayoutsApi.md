@@ -1,12 +1,12 @@
 # PayoutsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**createPayoutV1PayoutsPost**](PayoutsApi.md#createPayoutV1PayoutsPost) | **POST** v1/payouts/ | Create a payout |
-| [**getPayoutV1PayoutsPayoutIdGet**](PayoutsApi.md#getPayoutV1PayoutsPayoutIdGet) | **GET** v1/payouts/{payout_id} | Get payout |
-| [**listPayoutsV1PayoutsGet**](PayoutsApi.md#listPayoutsV1PayoutsGet) | **GET** v1/payouts/ | List payouts |
+| [**createPayout**](PayoutsApi.md#createPayout) | **POST** v1/payouts/ | Create a payout |
+| [**getPayout**](PayoutsApi.md#getPayout) | **GET** v1/payouts/{payout_id} | Get payout |
+| [**listPayouts**](PayoutsApi.md#listPayouts) | **GET** v1/payouts/ | List payouts |
 
 
 
@@ -28,7 +28,7 @@ val payoutCreateRequest : PayoutCreateRequest = {"reference_id":"PAYOUT-123-456"
 val xAPIKey : kotlin.String = xAPIKey_example // kotlin.String | 
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 
-val result : PayoutSingleResponse = webService.createPayoutV1PayoutsPost(payoutCreateRequest, xAPIKey, authorization)
+val result : PayoutSingleResponse = webService.createPayout(payoutCreateRequest, xAPIKey, authorization)
 ```
 
 ### Parameters
@@ -72,7 +72,7 @@ val payoutId : kotlin.String = payoutId_example // kotlin.String |
 val xAPIKey : kotlin.String = xAPIKey_example // kotlin.String | 
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 
-val result : PayoutSingleResponse = webService.getPayoutV1PayoutsPayoutIdGet(payoutId, xAPIKey, authorization)
+val result : PayoutSingleResponse = webService.getPayout(payoutId, xAPIKey, authorization)
 ```
 
 ### Parameters
@@ -118,7 +118,7 @@ val referenceId : kotlin.String = referenceId_example // kotlin.String | Filter 
 val xAPIKey : kotlin.String = xAPIKey_example // kotlin.String | 
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 
-val result : PayoutCollectionResponse = webService.listPayoutsV1PayoutsGet(limit, cursor, referenceId, xAPIKey, authorization)
+val result : PayoutCollectionResponse = webService.listPayouts(limit, cursor, referenceId, xAPIKey, authorization)
 ```
 
 ### Parameters

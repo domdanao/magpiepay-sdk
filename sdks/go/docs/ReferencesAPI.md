@@ -1,16 +1,16 @@
 # \ReferencesAPI
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListBankCodesV1ReferencesBankCodesGet**](ReferencesAPI.md#ListBankCodesV1ReferencesBankCodesGet) | **Get** /v1/references/bank_codes | List Bank Codes
+[**ListBankCodes**](ReferencesAPI.md#ListBankCodes) | **Get** /v1/references/bank_codes | List Bank Codes
 
 
 
-## ListBankCodesV1ReferencesBankCodesGet
+## ListBankCodes
 
-> BankCodeCollection ListBankCodesV1ReferencesBankCodesGet(ctx).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+> BankCodeCollection ListBankCodes(ctx).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 
 List Bank Codes
 
@@ -32,13 +32,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReferencesAPI.ListBankCodesV1ReferencesBankCodesGet(context.Background()).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+	resp, r, err := apiClient.ReferencesAPI.ListBankCodes(context.Background()).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ReferencesAPI.ListBankCodesV1ReferencesBankCodesGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ReferencesAPI.ListBankCodes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListBankCodesV1ReferencesBankCodesGet`: BankCodeCollection
-	fmt.Fprintf(os.Stdout, "Response from `ReferencesAPI.ListBankCodesV1ReferencesBankCodesGet`: %v\n", resp)
+	// response from `ListBankCodes`: BankCodeCollection
+	fmt.Fprintf(os.Stdout, "Response from `ReferencesAPI.ListBankCodes`: %v\n", resp)
 }
 ```
 
@@ -48,7 +48,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListBankCodesV1ReferencesBankCodesGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListBankCodesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -1,5 +1,5 @@
-group 'com.domdanao'
-version '1.0.0-alpha.1'
+group 'org.openapitools'
+version '1.0.0'
 
 wrapper {
     gradleVersion = '8.14.3'

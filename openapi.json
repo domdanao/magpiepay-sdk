@@ -5,6 +5,12 @@
         "description": "Magpie API for QRPh and Disbursement services",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": "https://api.magpiepay.com",
+            "description": "Production Server"
+        }
+    ],
     "paths": {
         "/v1/qrph/": {
             "get": {

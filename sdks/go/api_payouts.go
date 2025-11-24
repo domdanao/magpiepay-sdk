@@ -23,7 +23,7 @@ import (
 // PayoutsAPIService PayoutsAPI service
 type PayoutsAPIService service
 
-type ApiCreatePayoutV1PayoutsPostRequest struct {
+type ApiCreatePayoutRequest struct {
 	ctx context.Context
 	ApiService *PayoutsAPIService
 	payoutCreateRequest *PayoutCreateRequest
@@ -31,35 +31,35 @@ type ApiCreatePayoutV1PayoutsPostRequest struct {
 	authorization *string
 }
 
-func (r ApiCreatePayoutV1PayoutsPostRequest) PayoutCreateRequest(payoutCreateRequest PayoutCreateRequest) ApiCreatePayoutV1PayoutsPostRequest {
+func (r ApiCreatePayoutRequest) PayoutCreateRequest(payoutCreateRequest PayoutCreateRequest) ApiCreatePayoutRequest {
 	r.payoutCreateRequest = &payoutCreateRequest
 	return r
 }
 
-func (r ApiCreatePayoutV1PayoutsPostRequest) XAPIKey(xAPIKey string) ApiCreatePayoutV1PayoutsPostRequest {
+func (r ApiCreatePayoutRequest) XAPIKey(xAPIKey string) ApiCreatePayoutRequest {
 	r.xAPIKey = &xAPIKey
 	return r
 }
 
-func (r ApiCreatePayoutV1PayoutsPostRequest) Authorization(authorization string) ApiCreatePayoutV1PayoutsPostRequest {
+func (r ApiCreatePayoutRequest) Authorization(authorization string) ApiCreatePayoutRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiCreatePayoutV1PayoutsPostRequest) Execute() (*PayoutSingleResponse, *http.Response, error) {
-	return r.ApiService.CreatePayoutV1PayoutsPostExecute(r)
+func (r ApiCreatePayoutRequest) Execute() (*PayoutSingleResponse, *http.Response, error) {
+	return r.ApiService.CreatePayoutExecute(r)
 }
 
 /*
-CreatePayoutV1PayoutsPost Create a payout
+CreatePayout Create a payout
 
 Initiates a payout using a canonical payload and returns the normalized payout record.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreatePayoutV1PayoutsPostRequest
+ @return ApiCreatePayoutRequest
 */
-func (a *PayoutsAPIService) CreatePayoutV1PayoutsPost(ctx context.Context) ApiCreatePayoutV1PayoutsPostRequest {
-	return ApiCreatePayoutV1PayoutsPostRequest{
+func (a *PayoutsAPIService) CreatePayout(ctx context.Context) ApiCreatePayoutRequest {
+	return ApiCreatePayoutRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -67,7 +67,7 @@ func (a *PayoutsAPIService) CreatePayoutV1PayoutsPost(ctx context.Context) ApiCr
 
 // Execute executes the request
 //  @return PayoutSingleResponse
-func (a *PayoutsAPIService) CreatePayoutV1PayoutsPostExecute(r ApiCreatePayoutV1PayoutsPostRequest) (*PayoutSingleResponse, *http.Response, error) {
+func (a *PayoutsAPIService) CreatePayoutExecute(r ApiCreatePayoutRequest) (*PayoutSingleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -75,7 +75,7 @@ func (a *PayoutsAPIService) CreatePayoutV1PayoutsPostExecute(r ApiCreatePayoutV1
 		localVarReturnValue  *PayoutSingleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayoutsAPIService.CreatePayoutV1PayoutsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayoutsAPIService.CreatePayout")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -161,7 +161,7 @@ func (a *PayoutsAPIService) CreatePayoutV1PayoutsPostExecute(r ApiCreatePayoutV1
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetPayoutV1PayoutsPayoutIdGetRequest struct {
+type ApiGetPayoutRequest struct {
 	ctx context.Context
 	ApiService *PayoutsAPIService
 	payoutId string
@@ -169,31 +169,31 @@ type ApiGetPayoutV1PayoutsPayoutIdGetRequest struct {
 	authorization *string
 }
 
-func (r ApiGetPayoutV1PayoutsPayoutIdGetRequest) XAPIKey(xAPIKey string) ApiGetPayoutV1PayoutsPayoutIdGetRequest {
+func (r ApiGetPayoutRequest) XAPIKey(xAPIKey string) ApiGetPayoutRequest {
 	r.xAPIKey = &xAPIKey
 	return r
 }
 
-func (r ApiGetPayoutV1PayoutsPayoutIdGetRequest) Authorization(authorization string) ApiGetPayoutV1PayoutsPayoutIdGetRequest {
+func (r ApiGetPayoutRequest) Authorization(authorization string) ApiGetPayoutRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiGetPayoutV1PayoutsPayoutIdGetRequest) Execute() (*PayoutSingleResponse, *http.Response, error) {
-	return r.ApiService.GetPayoutV1PayoutsPayoutIdGetExecute(r)
+func (r ApiGetPayoutRequest) Execute() (*PayoutSingleResponse, *http.Response, error) {
+	return r.ApiService.GetPayoutExecute(r)
 }
 
 /*
-GetPayoutV1PayoutsPayoutIdGet Get payout
+GetPayout Get payout
 
 Retrieves the latest state for a payout.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param payoutId
- @return ApiGetPayoutV1PayoutsPayoutIdGetRequest
+ @return ApiGetPayoutRequest
 */
-func (a *PayoutsAPIService) GetPayoutV1PayoutsPayoutIdGet(ctx context.Context, payoutId string) ApiGetPayoutV1PayoutsPayoutIdGetRequest {
-	return ApiGetPayoutV1PayoutsPayoutIdGetRequest{
+func (a *PayoutsAPIService) GetPayout(ctx context.Context, payoutId string) ApiGetPayoutRequest {
+	return ApiGetPayoutRequest{
 		ApiService: a,
 		ctx: ctx,
 		payoutId: payoutId,
@@ -202,7 +202,7 @@ func (a *PayoutsAPIService) GetPayoutV1PayoutsPayoutIdGet(ctx context.Context, p
 
 // Execute executes the request
 //  @return PayoutSingleResponse
-func (a *PayoutsAPIService) GetPayoutV1PayoutsPayoutIdGetExecute(r ApiGetPayoutV1PayoutsPayoutIdGetRequest) (*PayoutSingleResponse, *http.Response, error) {
+func (a *PayoutsAPIService) GetPayoutExecute(r ApiGetPayoutRequest) (*PayoutSingleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -210,7 +210,7 @@ func (a *PayoutsAPIService) GetPayoutV1PayoutsPayoutIdGetExecute(r ApiGetPayoutV
 		localVarReturnValue  *PayoutSingleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayoutsAPIService.GetPayoutV1PayoutsPayoutIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayoutsAPIService.GetPayout")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -292,7 +292,7 @@ func (a *PayoutsAPIService) GetPayoutV1PayoutsPayoutIdGetExecute(r ApiGetPayoutV
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListPayoutsV1PayoutsGetRequest struct {
+type ApiListPayoutsRequest struct {
 	ctx context.Context
 	ApiService *PayoutsAPIService
 	limit *int32
@@ -303,47 +303,47 @@ type ApiListPayoutsV1PayoutsGetRequest struct {
 }
 
 // Number of payouts to return (1-100).
-func (r ApiListPayoutsV1PayoutsGetRequest) Limit(limit int32) ApiListPayoutsV1PayoutsGetRequest {
+func (r ApiListPayoutsRequest) Limit(limit int32) ApiListPayoutsRequest {
 	r.limit = &limit
 	return r
 }
 
 // Cursor returned from the previous page.
-func (r ApiListPayoutsV1PayoutsGetRequest) Cursor(cursor string) ApiListPayoutsV1PayoutsGetRequest {
+func (r ApiListPayoutsRequest) Cursor(cursor string) ApiListPayoutsRequest {
 	r.cursor = &cursor
 	return r
 }
 
 // Filter payouts by reference ID.
-func (r ApiListPayoutsV1PayoutsGetRequest) ReferenceId(referenceId string) ApiListPayoutsV1PayoutsGetRequest {
+func (r ApiListPayoutsRequest) ReferenceId(referenceId string) ApiListPayoutsRequest {
 	r.referenceId = &referenceId
 	return r
 }
 
-func (r ApiListPayoutsV1PayoutsGetRequest) XAPIKey(xAPIKey string) ApiListPayoutsV1PayoutsGetRequest {
+func (r ApiListPayoutsRequest) XAPIKey(xAPIKey string) ApiListPayoutsRequest {
 	r.xAPIKey = &xAPIKey
 	return r
 }
 
-func (r ApiListPayoutsV1PayoutsGetRequest) Authorization(authorization string) ApiListPayoutsV1PayoutsGetRequest {
+func (r ApiListPayoutsRequest) Authorization(authorization string) ApiListPayoutsRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiListPayoutsV1PayoutsGetRequest) Execute() (*PayoutCollectionResponse, *http.Response, error) {
-	return r.ApiService.ListPayoutsV1PayoutsGetExecute(r)
+func (r ApiListPayoutsRequest) Execute() (*PayoutCollectionResponse, *http.Response, error) {
+	return r.ApiService.ListPayoutsExecute(r)
 }
 
 /*
-ListPayoutsV1PayoutsGet List payouts
+ListPayouts List payouts
 
 Returns a paginated collection of payouts for the authenticated organization.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListPayoutsV1PayoutsGetRequest
+ @return ApiListPayoutsRequest
 */
-func (a *PayoutsAPIService) ListPayoutsV1PayoutsGet(ctx context.Context) ApiListPayoutsV1PayoutsGetRequest {
-	return ApiListPayoutsV1PayoutsGetRequest{
+func (a *PayoutsAPIService) ListPayouts(ctx context.Context) ApiListPayoutsRequest {
+	return ApiListPayoutsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -351,7 +351,7 @@ func (a *PayoutsAPIService) ListPayoutsV1PayoutsGet(ctx context.Context) ApiList
 
 // Execute executes the request
 //  @return PayoutCollectionResponse
-func (a *PayoutsAPIService) ListPayoutsV1PayoutsGetExecute(r ApiListPayoutsV1PayoutsGetRequest) (*PayoutCollectionResponse, *http.Response, error) {
+func (a *PayoutsAPIService) ListPayoutsExecute(r ApiListPayoutsRequest) (*PayoutCollectionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -359,7 +359,7 @@ func (a *PayoutsAPIService) ListPayoutsV1PayoutsGetExecute(r ApiListPayoutsV1Pay
 		localVarReturnValue  *PayoutCollectionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayoutsAPIService.ListPayoutsV1PayoutsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PayoutsAPIService.ListPayouts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -23,7 +23,7 @@ import (
 // PaymentsAPIService PaymentsAPI service
 type PaymentsAPIService service
 
-type ApiGetPaymentV1PaymentsPaymentIdGetRequest struct {
+type ApiGetPaymentRequest struct {
 	ctx context.Context
 	ApiService *PaymentsAPIService
 	paymentId string
@@ -31,31 +31,31 @@ type ApiGetPaymentV1PaymentsPaymentIdGetRequest struct {
 	authorization *string
 }
 
-func (r ApiGetPaymentV1PaymentsPaymentIdGetRequest) XAPIKey(xAPIKey string) ApiGetPaymentV1PaymentsPaymentIdGetRequest {
+func (r ApiGetPaymentRequest) XAPIKey(xAPIKey string) ApiGetPaymentRequest {
 	r.xAPIKey = &xAPIKey
 	return r
 }
 
-func (r ApiGetPaymentV1PaymentsPaymentIdGetRequest) Authorization(authorization string) ApiGetPaymentV1PaymentsPaymentIdGetRequest {
+func (r ApiGetPaymentRequest) Authorization(authorization string) ApiGetPaymentRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiGetPaymentV1PaymentsPaymentIdGetRequest) Execute() (*PaymentSingleResponse, *http.Response, error) {
-	return r.ApiService.GetPaymentV1PaymentsPaymentIdGetExecute(r)
+func (r ApiGetPaymentRequest) Execute() (*PaymentSingleResponse, *http.Response, error) {
+	return r.ApiService.GetPaymentExecute(r)
 }
 
 /*
-GetPaymentV1PaymentsPaymentIdGet Get payment
+GetPayment Get payment
 
 Retrieve the current state of a QRPh payment.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param paymentId
- @return ApiGetPaymentV1PaymentsPaymentIdGetRequest
+ @return ApiGetPaymentRequest
 */
-func (a *PaymentsAPIService) GetPaymentV1PaymentsPaymentIdGet(ctx context.Context, paymentId string) ApiGetPaymentV1PaymentsPaymentIdGetRequest {
-	return ApiGetPaymentV1PaymentsPaymentIdGetRequest{
+func (a *PaymentsAPIService) GetPayment(ctx context.Context, paymentId string) ApiGetPaymentRequest {
+	return ApiGetPaymentRequest{
 		ApiService: a,
 		ctx: ctx,
 		paymentId: paymentId,
@@ -64,7 +64,7 @@ func (a *PaymentsAPIService) GetPaymentV1PaymentsPaymentIdGet(ctx context.Contex
 
 // Execute executes the request
 //  @return PaymentSingleResponse
-func (a *PaymentsAPIService) GetPaymentV1PaymentsPaymentIdGetExecute(r ApiGetPaymentV1PaymentsPaymentIdGetRequest) (*PaymentSingleResponse, *http.Response, error) {
+func (a *PaymentsAPIService) GetPaymentExecute(r ApiGetPaymentRequest) (*PaymentSingleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -72,7 +72,7 @@ func (a *PaymentsAPIService) GetPaymentV1PaymentsPaymentIdGetExecute(r ApiGetPay
 		localVarReturnValue  *PaymentSingleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentsAPIService.GetPaymentV1PaymentsPaymentIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentsAPIService.GetPayment")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -154,7 +154,7 @@ func (a *PaymentsAPIService) GetPaymentV1PaymentsPaymentIdGetExecute(r ApiGetPay
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListPaymentsV1PaymentsGetRequest struct {
+type ApiListPaymentsRequest struct {
 	ctx context.Context
 	ApiService *PaymentsAPIService
 	limit *int32
@@ -164,41 +164,41 @@ type ApiListPaymentsV1PaymentsGetRequest struct {
 }
 
 // Number of payments to return (1-100).
-func (r ApiListPaymentsV1PaymentsGetRequest) Limit(limit int32) ApiListPaymentsV1PaymentsGetRequest {
+func (r ApiListPaymentsRequest) Limit(limit int32) ApiListPaymentsRequest {
 	r.limit = &limit
 	return r
 }
 
 // Cursor returned from the previous page.
-func (r ApiListPaymentsV1PaymentsGetRequest) Cursor(cursor string) ApiListPaymentsV1PaymentsGetRequest {
+func (r ApiListPaymentsRequest) Cursor(cursor string) ApiListPaymentsRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiListPaymentsV1PaymentsGetRequest) XAPIKey(xAPIKey string) ApiListPaymentsV1PaymentsGetRequest {
+func (r ApiListPaymentsRequest) XAPIKey(xAPIKey string) ApiListPaymentsRequest {
 	r.xAPIKey = &xAPIKey
 	return r
 }
 
-func (r ApiListPaymentsV1PaymentsGetRequest) Authorization(authorization string) ApiListPaymentsV1PaymentsGetRequest {
+func (r ApiListPaymentsRequest) Authorization(authorization string) ApiListPaymentsRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiListPaymentsV1PaymentsGetRequest) Execute() (*PaymentCollectionResponse, *http.Response, error) {
-	return r.ApiService.ListPaymentsV1PaymentsGetExecute(r)
+func (r ApiListPaymentsRequest) Execute() (*PaymentCollectionResponse, *http.Response, error) {
+	return r.ApiService.ListPaymentsExecute(r)
 }
 
 /*
-ListPaymentsV1PaymentsGet List payments
+ListPayments List payments
 
 Returns a paginated list of QRPh payments for the authenticated organization.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListPaymentsV1PaymentsGetRequest
+ @return ApiListPaymentsRequest
 */
-func (a *PaymentsAPIService) ListPaymentsV1PaymentsGet(ctx context.Context) ApiListPaymentsV1PaymentsGetRequest {
-	return ApiListPaymentsV1PaymentsGetRequest{
+func (a *PaymentsAPIService) ListPayments(ctx context.Context) ApiListPaymentsRequest {
+	return ApiListPaymentsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -206,7 +206,7 @@ func (a *PaymentsAPIService) ListPaymentsV1PaymentsGet(ctx context.Context) ApiL
 
 // Execute executes the request
 //  @return PaymentCollectionResponse
-func (a *PaymentsAPIService) ListPaymentsV1PaymentsGetExecute(r ApiListPaymentsV1PaymentsGetRequest) (*PaymentCollectionResponse, *http.Response, error) {
+func (a *PaymentsAPIService) ListPaymentsExecute(r ApiListPaymentsRequest) (*PaymentCollectionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -214,7 +214,7 @@ func (a *PaymentsAPIService) ListPaymentsV1PaymentsGetExecute(r ApiListPaymentsV
 		localVarReturnValue  *PaymentCollectionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentsAPIService.ListPaymentsV1PaymentsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentsAPIService.ListPayments")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

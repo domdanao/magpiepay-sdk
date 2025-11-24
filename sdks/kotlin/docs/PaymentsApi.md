@@ -1,11 +1,11 @@
 # PaymentsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**getPaymentV1PaymentsPaymentIdGet**](PaymentsApi.md#getPaymentV1PaymentsPaymentIdGet) | **GET** v1/payments/{payment_id} | Get payment |
-| [**listPaymentsV1PaymentsGet**](PaymentsApi.md#listPaymentsV1PaymentsGet) | **GET** v1/payments/ | List payments |
+| [**getPayment**](PaymentsApi.md#getPayment) | **GET** v1/payments/{payment_id} | Get payment |
+| [**listPayments**](PaymentsApi.md#listPayments) | **GET** v1/payments/ | List payments |
 
 
 
@@ -27,7 +27,7 @@ val paymentId : kotlin.String = paymentId_example // kotlin.String |
 val xAPIKey : kotlin.String = xAPIKey_example // kotlin.String | 
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 
-val result : PaymentSingleResponse = webService.getPaymentV1PaymentsPaymentIdGet(paymentId, xAPIKey, authorization)
+val result : PaymentSingleResponse = webService.getPayment(paymentId, xAPIKey, authorization)
 ```
 
 ### Parameters
@@ -72,7 +72,7 @@ val cursor : kotlin.String = cursor_example // kotlin.String | Cursor returned f
 val xAPIKey : kotlin.String = xAPIKey_example // kotlin.String | 
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 
-val result : PaymentCollectionResponse = webService.listPaymentsV1PaymentsGet(limit, cursor, xAPIKey, authorization)
+val result : PaymentCollectionResponse = webService.listPayments(limit, cursor, xAPIKey, authorization)
 ```
 
 ### Parameters

@@ -1,13 +1,13 @@
 # QRPhRequestsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**cancelQrphV1QrphIdCancelPost**](QRPhRequestsApi.md#cancelQrphV1QrphIdCancelPost) | **POST** v1/qrph/{id}/cancel | Cancel a QRPh request |
-| [**createQrphV1QrphPost**](QRPhRequestsApi.md#createQrphV1QrphPost) | **POST** v1/qrph/ | Create a QRPh request |
-| [**getQrphStatusV1QrphIdGet**](QRPhRequestsApi.md#getQrphStatusV1QrphIdGet) | **GET** v1/qrph/{id} | Get QRPh status |
-| [**listQrphV1QrphGet**](QRPhRequestsApi.md#listQrphV1QrphGet) | **GET** v1/qrph/ | List QRPh requests |
+| [**cancelQrph**](QRPhRequestsApi.md#cancelQrph) | **POST** v1/qrph/{id}/cancel | Cancel a QRPh request |
+| [**createQrph**](QRPhRequestsApi.md#createQrph) | **POST** v1/qrph/ | Create a QRPh request |
+| [**getQrph**](QRPhRequestsApi.md#getQrph) | **GET** v1/qrph/{id} | Get QRPh status |
+| [**listQrph**](QRPhRequestsApi.md#listQrph) | **GET** v1/qrph/ | List QRPh requests |
 
 
 
@@ -30,7 +30,7 @@ val xAPIKey : kotlin.String = xAPIKey_example // kotlin.String |
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 val cancelQRPhRequest : CancelQRPhRequest = {"cancellation_reason":"Customer requested refund"} // CancelQRPhRequest | 
 
-val result : QRPhSingleResponse = webService.cancelQrphV1QrphIdCancelPost(id, xAPIKey, authorization, cancelQRPhRequest)
+val result : QRPhSingleResponse = webService.cancelQrph(id, xAPIKey, authorization, cancelQRPhRequest)
 ```
 
 ### Parameters
@@ -75,7 +75,7 @@ val canonicalCreateQRReq : CanonicalCreateQRReq = {"reference_id":"order-2025-11
 val xAPIKey : kotlin.String = xAPIKey_example // kotlin.String | 
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 
-val result : QRPhSingleResponse = webService.createQrphV1QrphPost(canonicalCreateQRReq, xAPIKey, authorization)
+val result : QRPhSingleResponse = webService.createQrph(canonicalCreateQRReq, xAPIKey, authorization)
 ```
 
 ### Parameters
@@ -119,7 +119,7 @@ val id : kotlin.String = id_example // kotlin.String |
 val xAPIKey : kotlin.String = xAPIKey_example // kotlin.String | 
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 
-val result : QRPhSingleResponse = webService.getQrphStatusV1QrphIdGet(id, xAPIKey, authorization)
+val result : QRPhSingleResponse = webService.getQrph(id, xAPIKey, authorization)
 ```
 
 ### Parameters
@@ -165,7 +165,7 @@ val referenceId : kotlin.String = referenceId_example // kotlin.String | Filter 
 val xAPIKey : kotlin.String = xAPIKey_example // kotlin.String | 
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 
-val result : QRPhCollectionResponse = webService.listQrphV1QrphGet(limit, cursor, referenceId, xAPIKey, authorization)
+val result : QRPhCollectionResponse = webService.listQrph(limit, cursor, referenceId, xAPIKey, authorization)
 ```
 
 ### Parameters

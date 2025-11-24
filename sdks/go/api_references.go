@@ -22,35 +22,35 @@ import (
 // ReferencesAPIService ReferencesAPI service
 type ReferencesAPIService service
 
-type ApiListBankCodesV1ReferencesBankCodesGetRequest struct {
+type ApiListBankCodesRequest struct {
 	ctx context.Context
 	ApiService *ReferencesAPIService
 	xAPIKey *string
 	authorization *string
 }
 
-func (r ApiListBankCodesV1ReferencesBankCodesGetRequest) XAPIKey(xAPIKey string) ApiListBankCodesV1ReferencesBankCodesGetRequest {
+func (r ApiListBankCodesRequest) XAPIKey(xAPIKey string) ApiListBankCodesRequest {
 	r.xAPIKey = &xAPIKey
 	return r
 }
 
-func (r ApiListBankCodesV1ReferencesBankCodesGetRequest) Authorization(authorization string) ApiListBankCodesV1ReferencesBankCodesGetRequest {
+func (r ApiListBankCodesRequest) Authorization(authorization string) ApiListBankCodesRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiListBankCodesV1ReferencesBankCodesGetRequest) Execute() (*BankCodeCollection, *http.Response, error) {
-	return r.ApiService.ListBankCodesV1ReferencesBankCodesGetExecute(r)
+func (r ApiListBankCodesRequest) Execute() (*BankCodeCollection, *http.Response, error) {
+	return r.ApiService.ListBankCodesExecute(r)
 }
 
 /*
-ListBankCodesV1ReferencesBankCodesGet List Bank Codes
+ListBankCodes List Bank Codes
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListBankCodesV1ReferencesBankCodesGetRequest
+ @return ApiListBankCodesRequest
 */
-func (a *ReferencesAPIService) ListBankCodesV1ReferencesBankCodesGet(ctx context.Context) ApiListBankCodesV1ReferencesBankCodesGetRequest {
-	return ApiListBankCodesV1ReferencesBankCodesGetRequest{
+func (a *ReferencesAPIService) ListBankCodes(ctx context.Context) ApiListBankCodesRequest {
+	return ApiListBankCodesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -58,7 +58,7 @@ func (a *ReferencesAPIService) ListBankCodesV1ReferencesBankCodesGet(ctx context
 
 // Execute executes the request
 //  @return BankCodeCollection
-func (a *ReferencesAPIService) ListBankCodesV1ReferencesBankCodesGetExecute(r ApiListBankCodesV1ReferencesBankCodesGetRequest) (*BankCodeCollection, *http.Response, error) {
+func (a *ReferencesAPIService) ListBankCodesExecute(r ApiListBankCodesRequest) (*BankCodeCollection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -66,7 +66,7 @@ func (a *ReferencesAPIService) ListBankCodesV1ReferencesBankCodesGetExecute(r Ap
 		localVarReturnValue  *BankCodeCollection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReferencesAPIService.ListBankCodesV1ReferencesBankCodesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReferencesAPIService.ListBankCodes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

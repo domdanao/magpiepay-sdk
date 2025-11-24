@@ -22,8 +22,8 @@ with magpiepay.ApiClient(configuration) as api_client:
     try:
         print("Fetching bank codes...")
         # Pass API key directly as x_api_key argument
-        api_response = api_instance.list_bank_codes_v1_references_bank_codes_get(x_api_key=api_key)
+        api_response = api_instance.list_bank_codes(x_api_key=api_key)
         print("Success! Found bank codes:")
         pprint(api_response)
     except magpiepay.ApiException as e:
-        print("Exception when calling ReferencesApi->listBankCodesV1ReferencesBankCodesGet: %s\n" % e)
+        print("Exception when calling ReferencesApi->list_bank_codes: %s\n" % e)

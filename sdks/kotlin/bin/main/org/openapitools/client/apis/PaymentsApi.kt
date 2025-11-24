@@ -25,7 +25,7 @@ interface PaymentsApi {
      * @return [Call]<[PaymentSingleResponse]>
      */
     @GET("v1/payments/{payment_id}")
-    fun getPaymentV1PaymentsPaymentIdGet(@Path("payment_id") paymentId: kotlin.String, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<PaymentSingleResponse>
+    fun getPayment(@Path("payment_id") paymentId: kotlin.String, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<PaymentSingleResponse>
 
     /**
      * GET v1/payments/
@@ -42,6 +42,6 @@ interface PaymentsApi {
      * @return [Call]<[PaymentCollectionResponse]>
      */
     @GET("v1/payments/")
-    fun listPaymentsV1PaymentsGet(@Query("limit") limit: kotlin.Int? = 50, @Query("cursor") cursor: kotlin.String? = null, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<PaymentCollectionResponse>
+    fun listPayments(@Query("limit") limit: kotlin.Int? = 50, @Query("cursor") cursor: kotlin.String? = null, @Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<PaymentCollectionResponse>
 
 }

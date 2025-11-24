@@ -1,19 +1,19 @@
 # \QRPhRequestsAPI
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CancelQrphV1QrphIdCancelPost**](QRPhRequestsAPI.md#CancelQrphV1QrphIdCancelPost) | **Post** /v1/qrph/{id}/cancel | Cancel a QRPh request
-[**CreateQrphV1QrphPost**](QRPhRequestsAPI.md#CreateQrphV1QrphPost) | **Post** /v1/qrph/ | Create a QRPh request
-[**GetQrphStatusV1QrphIdGet**](QRPhRequestsAPI.md#GetQrphStatusV1QrphIdGet) | **Get** /v1/qrph/{id} | Get QRPh status
-[**ListQrphV1QrphGet**](QRPhRequestsAPI.md#ListQrphV1QrphGet) | **Get** /v1/qrph/ | List QRPh requests
+[**CancelQrph**](QRPhRequestsAPI.md#CancelQrph) | **Post** /v1/qrph/{id}/cancel | Cancel a QRPh request
+[**CreateQrph**](QRPhRequestsAPI.md#CreateQrph) | **Post** /v1/qrph/ | Create a QRPh request
+[**GetQrph**](QRPhRequestsAPI.md#GetQrph) | **Get** /v1/qrph/{id} | Get QRPh status
+[**ListQrph**](QRPhRequestsAPI.md#ListQrph) | **Get** /v1/qrph/ | List QRPh requests
 
 
 
-## CancelQrphV1QrphIdCancelPost
+## CancelQrph
 
-> QRPhSingleResponse CancelQrphV1QrphIdCancelPost(ctx, id).XAPIKey(xAPIKey).Authorization(authorization).CancelQRPhRequest(cancelQRPhRequest).Execute()
+> QRPhSingleResponse CancelQrph(ctx, id).XAPIKey(xAPIKey).Authorization(authorization).CancelQRPhRequest(cancelQRPhRequest).Execute()
 
 Cancel a QRPh request
 
@@ -39,13 +39,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.QRPhRequestsAPI.CancelQrphV1QrphIdCancelPost(context.Background(), id).XAPIKey(xAPIKey).Authorization(authorization).CancelQRPhRequest(cancelQRPhRequest).Execute()
+	resp, r, err := apiClient.QRPhRequestsAPI.CancelQrph(context.Background(), id).XAPIKey(xAPIKey).Authorization(authorization).CancelQRPhRequest(cancelQRPhRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `QRPhRequestsAPI.CancelQrphV1QrphIdCancelPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `QRPhRequestsAPI.CancelQrph``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CancelQrphV1QrphIdCancelPost`: QRPhSingleResponse
-	fmt.Fprintf(os.Stdout, "Response from `QRPhRequestsAPI.CancelQrphV1QrphIdCancelPost`: %v\n", resp)
+	// response from `CancelQrph`: QRPhSingleResponse
+	fmt.Fprintf(os.Stdout, "Response from `QRPhRequestsAPI.CancelQrph`: %v\n", resp)
 }
 ```
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCancelQrphV1QrphIdCancelPostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCancelQrphRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -87,9 +87,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateQrphV1QrphPost
+## CreateQrph
 
-> QRPhSingleResponse CreateQrphV1QrphPost(ctx).CanonicalCreateQRReq(canonicalCreateQRReq).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+> QRPhSingleResponse CreateQrph(ctx).CanonicalCreateQRReq(canonicalCreateQRReq).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 
 Create a QRPh request
 
@@ -114,13 +114,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.QRPhRequestsAPI.CreateQrphV1QrphPost(context.Background()).CanonicalCreateQRReq(canonicalCreateQRReq).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+	resp, r, err := apiClient.QRPhRequestsAPI.CreateQrph(context.Background()).CanonicalCreateQRReq(canonicalCreateQRReq).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `QRPhRequestsAPI.CreateQrphV1QrphPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `QRPhRequestsAPI.CreateQrph``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateQrphV1QrphPost`: QRPhSingleResponse
-	fmt.Fprintf(os.Stdout, "Response from `QRPhRequestsAPI.CreateQrphV1QrphPost`: %v\n", resp)
+	// response from `CreateQrph`: QRPhSingleResponse
+	fmt.Fprintf(os.Stdout, "Response from `QRPhRequestsAPI.CreateQrph`: %v\n", resp)
 }
 ```
 
@@ -130,7 +130,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateQrphV1QrphPostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateQrphRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -157,9 +157,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetQrphStatusV1QrphIdGet
+## GetQrph
 
-> QRPhSingleResponse GetQrphStatusV1QrphIdGet(ctx, id).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+> QRPhSingleResponse GetQrph(ctx, id).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 
 Get QRPh status
 
@@ -184,13 +184,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.QRPhRequestsAPI.GetQrphStatusV1QrphIdGet(context.Background(), id).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+	resp, r, err := apiClient.QRPhRequestsAPI.GetQrph(context.Background(), id).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `QRPhRequestsAPI.GetQrphStatusV1QrphIdGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `QRPhRequestsAPI.GetQrph``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetQrphStatusV1QrphIdGet`: QRPhSingleResponse
-	fmt.Fprintf(os.Stdout, "Response from `QRPhRequestsAPI.GetQrphStatusV1QrphIdGet`: %v\n", resp)
+	// response from `GetQrph`: QRPhSingleResponse
+	fmt.Fprintf(os.Stdout, "Response from `QRPhRequestsAPI.GetQrph`: %v\n", resp)
 }
 ```
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetQrphStatusV1QrphIdGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetQrphRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -231,9 +231,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListQrphV1QrphGet
+## ListQrph
 
-> QRPhCollectionResponse ListQrphV1QrphGet(ctx).Limit(limit).Cursor(cursor).ReferenceId(referenceId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+> QRPhCollectionResponse ListQrph(ctx).Limit(limit).Cursor(cursor).ReferenceId(referenceId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 
 List QRPh requests
 
@@ -260,13 +260,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.QRPhRequestsAPI.ListQrphV1QrphGet(context.Background()).Limit(limit).Cursor(cursor).ReferenceId(referenceId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+	resp, r, err := apiClient.QRPhRequestsAPI.ListQrph(context.Background()).Limit(limit).Cursor(cursor).ReferenceId(referenceId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `QRPhRequestsAPI.ListQrphV1QrphGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `QRPhRequestsAPI.ListQrph``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListQrphV1QrphGet`: QRPhCollectionResponse
-	fmt.Fprintf(os.Stdout, "Response from `QRPhRequestsAPI.ListQrphV1QrphGet`: %v\n", resp)
+	// response from `ListQrph`: QRPhCollectionResponse
+	fmt.Fprintf(os.Stdout, "Response from `QRPhRequestsAPI.ListQrph`: %v\n", resp)
 }
 ```
 
@@ -276,7 +276,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListQrphV1QrphGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListQrphRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

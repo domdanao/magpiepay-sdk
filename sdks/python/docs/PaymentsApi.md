@@ -1,15 +1,15 @@
 # magpiepay.PaymentsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_payment_v1_payments_payment_id_get**](PaymentsApi.md#get_payment_v1_payments_payment_id_get) | **GET** /v1/payments/{payment_id} | Get payment
-[**list_payments_v1_payments_get**](PaymentsApi.md#list_payments_v1_payments_get) | **GET** /v1/payments/ | List payments
+[**get_payment**](PaymentsApi.md#get_payment) | **GET** /v1/payments/{payment_id} | Get payment
+[**list_payments**](PaymentsApi.md#list_payments) | **GET** /v1/payments/ | List payments
 
 
-# **get_payment_v1_payments_payment_id_get**
-> PaymentSingleResponse get_payment_v1_payments_payment_id_get(payment_id, x_api_key=x_api_key, authorization=authorization)
+# **get_payment**
+> PaymentSingleResponse get_payment(payment_id, x_api_key=x_api_key, authorization=authorization)
 
 Get payment
 
@@ -25,10 +25,10 @@ from magpiepay.models.payment_single_response import PaymentSingleResponse
 from magpiepay.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.magpiepay.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = magpiepay.Configuration(
-    host = "http://localhost"
+    host = "https://api.magpiepay.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -52,11 +52,11 @@ with magpiepay.ApiClient(configuration) as api_client:
 
     try:
         # Get payment
-        api_response = api_instance.get_payment_v1_payments_payment_id_get(payment_id, x_api_key=x_api_key, authorization=authorization)
-        print("The response of PaymentsApi->get_payment_v1_payments_payment_id_get:\n")
+        api_response = api_instance.get_payment(payment_id, x_api_key=x_api_key, authorization=authorization)
+        print("The response of PaymentsApi->get_payment:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PaymentsApi->get_payment_v1_payments_payment_id_get: %s\n" % e)
+        print("Exception when calling PaymentsApi->get_payment: %s\n" % e)
 ```
 
 
@@ -92,8 +92,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_payments_v1_payments_get**
-> PaymentCollectionResponse list_payments_v1_payments_get(limit=limit, cursor=cursor, x_api_key=x_api_key, authorization=authorization)
+# **list_payments**
+> PaymentCollectionResponse list_payments(limit=limit, cursor=cursor, x_api_key=x_api_key, authorization=authorization)
 
 List payments
 
@@ -109,10 +109,10 @@ from magpiepay.models.payment_collection_response import PaymentCollectionRespon
 from magpiepay.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.magpiepay.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = magpiepay.Configuration(
-    host = "http://localhost"
+    host = "https://api.magpiepay.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -137,11 +137,11 @@ with magpiepay.ApiClient(configuration) as api_client:
 
     try:
         # List payments
-        api_response = api_instance.list_payments_v1_payments_get(limit=limit, cursor=cursor, x_api_key=x_api_key, authorization=authorization)
-        print("The response of PaymentsApi->list_payments_v1_payments_get:\n")
+        api_response = api_instance.list_payments(limit=limit, cursor=cursor, x_api_key=x_api_key, authorization=authorization)
+        print("The response of PaymentsApi->list_payments:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PaymentsApi->list_payments_v1_payments_get: %s\n" % e)
+        print("Exception when calling PaymentsApi->list_payments: %s\n" % e)
 ```
 
 

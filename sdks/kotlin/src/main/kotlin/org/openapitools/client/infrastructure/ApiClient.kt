@@ -142,7 +142,7 @@ class ApiClient(
 
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty(baseUrlKey, "http://localhost")
+            System.getProperties().getProperty(baseUrlKey, "https://api.magpiepay.com")
         }
     }
 }

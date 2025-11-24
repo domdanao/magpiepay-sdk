@@ -4,7 +4,8 @@ info:
   title: Magpie API Documentation
   version: 1.0.0
 servers:
-- url: /
+- description: Production Server
+  url: https://api.magpiepay.com
 security:
 - basicAuth: []
 tags:
@@ -39,7 +40,7 @@ paths:
       description: Returns a paginated collection of QRPh requests for the authenticated
         organization. Use `limit` and `cursor` for pagination and `reference_id` to
         locate a specific request.
-      operationId: list_qrph_v1_qrph__get
+      operationId: listQrph
       parameters:
       - description: Number of items to return (1-100).
         explode: true
@@ -128,7 +129,7 @@ paths:
     post:
       description: Creates a QRPh request from the canonical payload and returns the
         normalized request with the checkout URL attached.
-      operationId: create_qrph_v1_qrph__post
+      operationId: createQrph
       parameters:
       - explode: false
         in: header
@@ -198,7 +199,7 @@ paths:
     get:
       description: "Returns the current QRPh request state, including checkout URLs\
         \ and payment IDs."
-      operationId: get_qrph_status_v1_qrph__id__get
+      operationId: getQrph
       parameters:
       - explode: false
         in: path
@@ -263,7 +264,7 @@ paths:
     post:
       description: Cancels the specified QRPh request and returns the updated request
         record.
-      operationId: cancel_qrph_v1_qrph__id__cancel_post
+      operationId: cancelQrph
       parameters:
       - explode: false
         in: path
@@ -335,7 +336,7 @@ paths:
     get:
       description: Returns a paginated list of QRPh payments for the authenticated
         organization.
-      operationId: list_payments_v1_payments__get
+      operationId: listPayments
       parameters:
       - description: Number of payments to return (1-100).
         explode: true
@@ -410,7 +411,7 @@ paths:
   /v1/payments/{payment_id}:
     get:
       description: Retrieve the current state of a QRPh payment.
-      operationId: get_payment_v1_payments__payment_id__get
+      operationId: getPayment
       parameters:
       - explode: false
         in: path
@@ -470,7 +471,7 @@ paths:
     get:
       description: Returns a paginated collection of payouts for the authenticated
         organization.
-      operationId: list_payouts_v1_payouts__get
+      operationId: listPayouts
       parameters:
       - description: Number of payouts to return (1-100).
         explode: true
@@ -561,7 +562,7 @@ paths:
     post:
       description: Initiates a payout using a canonical payload and returns the normalized
         payout record.
-      operationId: create_payout_v1_payouts__post
+      operationId: createPayout
       parameters:
       - explode: false
         in: header
@@ -636,7 +637,7 @@ paths:
   /v1/payouts/{payout_id}:
     get:
       description: Retrieves the latest state for a payout.
-      operationId: get_payout_v1_payouts__payout_id__get
+      operationId: getPayout
       parameters:
       - explode: false
         in: path
@@ -701,7 +702,7 @@ paths:
       - Payouts
   /v1/references/bank_codes:
     get:
-      operationId: list_bank_codes_v1_references_bank_codes_get
+      operationId: listBankCodes
       parameters:
       - explode: false
         in: header

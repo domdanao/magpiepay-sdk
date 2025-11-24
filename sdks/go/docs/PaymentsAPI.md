@@ -1,17 +1,17 @@
 # \PaymentsAPI
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetPaymentV1PaymentsPaymentIdGet**](PaymentsAPI.md#GetPaymentV1PaymentsPaymentIdGet) | **Get** /v1/payments/{payment_id} | Get payment
-[**ListPaymentsV1PaymentsGet**](PaymentsAPI.md#ListPaymentsV1PaymentsGet) | **Get** /v1/payments/ | List payments
+[**GetPayment**](PaymentsAPI.md#GetPayment) | **Get** /v1/payments/{payment_id} | Get payment
+[**ListPayments**](PaymentsAPI.md#ListPayments) | **Get** /v1/payments/ | List payments
 
 
 
-## GetPaymentV1PaymentsPaymentIdGet
+## GetPayment
 
-> PaymentSingleResponse GetPaymentV1PaymentsPaymentIdGet(ctx, paymentId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+> PaymentSingleResponse GetPayment(ctx, paymentId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 
 Get payment
 
@@ -36,13 +36,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentsAPI.GetPaymentV1PaymentsPaymentIdGet(context.Background(), paymentId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+	resp, r, err := apiClient.PaymentsAPI.GetPayment(context.Background(), paymentId).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PaymentsAPI.GetPaymentV1PaymentsPaymentIdGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PaymentsAPI.GetPayment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetPaymentV1PaymentsPaymentIdGet`: PaymentSingleResponse
-	fmt.Fprintf(os.Stdout, "Response from `PaymentsAPI.GetPaymentV1PaymentsPaymentIdGet`: %v\n", resp)
+	// response from `GetPayment`: PaymentSingleResponse
+	fmt.Fprintf(os.Stdout, "Response from `PaymentsAPI.GetPayment`: %v\n", resp)
 }
 ```
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetPaymentV1PaymentsPaymentIdGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetPaymentRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -83,9 +83,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListPaymentsV1PaymentsGet
+## ListPayments
 
-> PaymentCollectionResponse ListPaymentsV1PaymentsGet(ctx).Limit(limit).Cursor(cursor).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+> PaymentCollectionResponse ListPayments(ctx).Limit(limit).Cursor(cursor).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 
 List payments
 
@@ -111,13 +111,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentsAPI.ListPaymentsV1PaymentsGet(context.Background()).Limit(limit).Cursor(cursor).XAPIKey(xAPIKey).Authorization(authorization).Execute()
+	resp, r, err := apiClient.PaymentsAPI.ListPayments(context.Background()).Limit(limit).Cursor(cursor).XAPIKey(xAPIKey).Authorization(authorization).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PaymentsAPI.ListPaymentsV1PaymentsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PaymentsAPI.ListPayments``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListPaymentsV1PaymentsGet`: PaymentCollectionResponse
-	fmt.Fprintf(os.Stdout, "Response from `PaymentsAPI.ListPaymentsV1PaymentsGet`: %v\n", resp)
+	// response from `ListPayments`: PaymentCollectionResponse
+	fmt.Fprintf(os.Stdout, "Response from `PaymentsAPI.ListPayments`: %v\n", resp)
 }
 ```
 
@@ -127,7 +127,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListPaymentsV1PaymentsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListPaymentsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

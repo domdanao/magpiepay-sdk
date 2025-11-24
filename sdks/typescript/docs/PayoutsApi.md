@@ -1,6 +1,6 @@
 # PayoutsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|

@@ -23,6 +23,6 @@ interface ReferencesApi {
      * @return [Call]<[BankCodeCollection]>
      */
     @GET("v1/references/bank_codes")
-    fun listBankCodesV1ReferencesBankCodesGet(@Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<BankCodeCollection>
+    fun listBankCodes(@Header("X-API-Key") xAPIKey: kotlin.String? = null, @Header("Authorization") authorization: kotlin.String? = null): Call<BankCodeCollection>
 
 }

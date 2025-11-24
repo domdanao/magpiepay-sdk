@@ -23,7 +23,7 @@ import (
 // QRPhRequestsAPIService QRPhRequestsAPI service
 type QRPhRequestsAPIService service
 
-type ApiCancelQrphV1QrphIdCancelPostRequest struct {
+type ApiCancelQrphRequest struct {
 	ctx context.Context
 	ApiService *QRPhRequestsAPIService
 	id string
@@ -32,36 +32,36 @@ type ApiCancelQrphV1QrphIdCancelPostRequest struct {
 	cancelQRPhRequest *CancelQRPhRequest
 }
 
-func (r ApiCancelQrphV1QrphIdCancelPostRequest) XAPIKey(xAPIKey string) ApiCancelQrphV1QrphIdCancelPostRequest {
+func (r ApiCancelQrphRequest) XAPIKey(xAPIKey string) ApiCancelQrphRequest {
 	r.xAPIKey = &xAPIKey
 	return r
 }
 
-func (r ApiCancelQrphV1QrphIdCancelPostRequest) Authorization(authorization string) ApiCancelQrphV1QrphIdCancelPostRequest {
+func (r ApiCancelQrphRequest) Authorization(authorization string) ApiCancelQrphRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiCancelQrphV1QrphIdCancelPostRequest) CancelQRPhRequest(cancelQRPhRequest CancelQRPhRequest) ApiCancelQrphV1QrphIdCancelPostRequest {
+func (r ApiCancelQrphRequest) CancelQRPhRequest(cancelQRPhRequest CancelQRPhRequest) ApiCancelQrphRequest {
 	r.cancelQRPhRequest = &cancelQRPhRequest
 	return r
 }
 
-func (r ApiCancelQrphV1QrphIdCancelPostRequest) Execute() (*QRPhSingleResponse, *http.Response, error) {
-	return r.ApiService.CancelQrphV1QrphIdCancelPostExecute(r)
+func (r ApiCancelQrphRequest) Execute() (*QRPhSingleResponse, *http.Response, error) {
+	return r.ApiService.CancelQrphExecute(r)
 }
 
 /*
-CancelQrphV1QrphIdCancelPost Cancel a QRPh request
+CancelQrph Cancel a QRPh request
 
 Cancels the specified QRPh request and returns the updated request record.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiCancelQrphV1QrphIdCancelPostRequest
+ @return ApiCancelQrphRequest
 */
-func (a *QRPhRequestsAPIService) CancelQrphV1QrphIdCancelPost(ctx context.Context, id string) ApiCancelQrphV1QrphIdCancelPostRequest {
-	return ApiCancelQrphV1QrphIdCancelPostRequest{
+func (a *QRPhRequestsAPIService) CancelQrph(ctx context.Context, id string) ApiCancelQrphRequest {
+	return ApiCancelQrphRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -70,7 +70,7 @@ func (a *QRPhRequestsAPIService) CancelQrphV1QrphIdCancelPost(ctx context.Contex
 
 // Execute executes the request
 //  @return QRPhSingleResponse
-func (a *QRPhRequestsAPIService) CancelQrphV1QrphIdCancelPostExecute(r ApiCancelQrphV1QrphIdCancelPostRequest) (*QRPhSingleResponse, *http.Response, error) {
+func (a *QRPhRequestsAPIService) CancelQrphExecute(r ApiCancelQrphRequest) (*QRPhSingleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -78,7 +78,7 @@ func (a *QRPhRequestsAPIService) CancelQrphV1QrphIdCancelPostExecute(r ApiCancel
 		localVarReturnValue  *QRPhSingleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QRPhRequestsAPIService.CancelQrphV1QrphIdCancelPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QRPhRequestsAPIService.CancelQrph")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -162,7 +162,7 @@ func (a *QRPhRequestsAPIService) CancelQrphV1QrphIdCancelPostExecute(r ApiCancel
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateQrphV1QrphPostRequest struct {
+type ApiCreateQrphRequest struct {
 	ctx context.Context
 	ApiService *QRPhRequestsAPIService
 	canonicalCreateQRReq *CanonicalCreateQRReq
@@ -170,35 +170,35 @@ type ApiCreateQrphV1QrphPostRequest struct {
 	authorization *string
 }
 
-func (r ApiCreateQrphV1QrphPostRequest) CanonicalCreateQRReq(canonicalCreateQRReq CanonicalCreateQRReq) ApiCreateQrphV1QrphPostRequest {
+func (r ApiCreateQrphRequest) CanonicalCreateQRReq(canonicalCreateQRReq CanonicalCreateQRReq) ApiCreateQrphRequest {
 	r.canonicalCreateQRReq = &canonicalCreateQRReq
 	return r
 }
 
-func (r ApiCreateQrphV1QrphPostRequest) XAPIKey(xAPIKey string) ApiCreateQrphV1QrphPostRequest {
+func (r ApiCreateQrphRequest) XAPIKey(xAPIKey string) ApiCreateQrphRequest {
 	r.xAPIKey = &xAPIKey
 	return r
 }
 
-func (r ApiCreateQrphV1QrphPostRequest) Authorization(authorization string) ApiCreateQrphV1QrphPostRequest {
+func (r ApiCreateQrphRequest) Authorization(authorization string) ApiCreateQrphRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiCreateQrphV1QrphPostRequest) Execute() (*QRPhSingleResponse, *http.Response, error) {
-	return r.ApiService.CreateQrphV1QrphPostExecute(r)
+func (r ApiCreateQrphRequest) Execute() (*QRPhSingleResponse, *http.Response, error) {
+	return r.ApiService.CreateQrphExecute(r)
 }
 
 /*
-CreateQrphV1QrphPost Create a QRPh request
+CreateQrph Create a QRPh request
 
 Creates a QRPh request from the canonical payload and returns the normalized request with the checkout URL attached.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateQrphV1QrphPostRequest
+ @return ApiCreateQrphRequest
 */
-func (a *QRPhRequestsAPIService) CreateQrphV1QrphPost(ctx context.Context) ApiCreateQrphV1QrphPostRequest {
-	return ApiCreateQrphV1QrphPostRequest{
+func (a *QRPhRequestsAPIService) CreateQrph(ctx context.Context) ApiCreateQrphRequest {
+	return ApiCreateQrphRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -206,7 +206,7 @@ func (a *QRPhRequestsAPIService) CreateQrphV1QrphPost(ctx context.Context) ApiCr
 
 // Execute executes the request
 //  @return QRPhSingleResponse
-func (a *QRPhRequestsAPIService) CreateQrphV1QrphPostExecute(r ApiCreateQrphV1QrphPostRequest) (*QRPhSingleResponse, *http.Response, error) {
+func (a *QRPhRequestsAPIService) CreateQrphExecute(r ApiCreateQrphRequest) (*QRPhSingleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -214,7 +214,7 @@ func (a *QRPhRequestsAPIService) CreateQrphV1QrphPostExecute(r ApiCreateQrphV1Qr
 		localVarReturnValue  *QRPhSingleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QRPhRequestsAPIService.CreateQrphV1QrphPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QRPhRequestsAPIService.CreateQrph")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -300,7 +300,7 @@ func (a *QRPhRequestsAPIService) CreateQrphV1QrphPostExecute(r ApiCreateQrphV1Qr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetQrphStatusV1QrphIdGetRequest struct {
+type ApiGetQrphRequest struct {
 	ctx context.Context
 	ApiService *QRPhRequestsAPIService
 	id string
@@ -308,31 +308,31 @@ type ApiGetQrphStatusV1QrphIdGetRequest struct {
 	authorization *string
 }
 
-func (r ApiGetQrphStatusV1QrphIdGetRequest) XAPIKey(xAPIKey string) ApiGetQrphStatusV1QrphIdGetRequest {
+func (r ApiGetQrphRequest) XAPIKey(xAPIKey string) ApiGetQrphRequest {
 	r.xAPIKey = &xAPIKey
 	return r
 }
 
-func (r ApiGetQrphStatusV1QrphIdGetRequest) Authorization(authorization string) ApiGetQrphStatusV1QrphIdGetRequest {
+func (r ApiGetQrphRequest) Authorization(authorization string) ApiGetQrphRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiGetQrphStatusV1QrphIdGetRequest) Execute() (*QRPhSingleResponse, *http.Response, error) {
-	return r.ApiService.GetQrphStatusV1QrphIdGetExecute(r)
+func (r ApiGetQrphRequest) Execute() (*QRPhSingleResponse, *http.Response, error) {
+	return r.ApiService.GetQrphExecute(r)
 }
 
 /*
-GetQrphStatusV1QrphIdGet Get QRPh status
+GetQrph Get QRPh status
 
 Returns the current QRPh request state, including checkout URLs and payment IDs.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiGetQrphStatusV1QrphIdGetRequest
+ @return ApiGetQrphRequest
 */
-func (a *QRPhRequestsAPIService) GetQrphStatusV1QrphIdGet(ctx context.Context, id string) ApiGetQrphStatusV1QrphIdGetRequest {
-	return ApiGetQrphStatusV1QrphIdGetRequest{
+func (a *QRPhRequestsAPIService) GetQrph(ctx context.Context, id string) ApiGetQrphRequest {
+	return ApiGetQrphRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -341,7 +341,7 @@ func (a *QRPhRequestsAPIService) GetQrphStatusV1QrphIdGet(ctx context.Context, i
 
 // Execute executes the request
 //  @return QRPhSingleResponse
-func (a *QRPhRequestsAPIService) GetQrphStatusV1QrphIdGetExecute(r ApiGetQrphStatusV1QrphIdGetRequest) (*QRPhSingleResponse, *http.Response, error) {
+func (a *QRPhRequestsAPIService) GetQrphExecute(r ApiGetQrphRequest) (*QRPhSingleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -349,7 +349,7 @@ func (a *QRPhRequestsAPIService) GetQrphStatusV1QrphIdGetExecute(r ApiGetQrphSta
 		localVarReturnValue  *QRPhSingleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QRPhRequestsAPIService.GetQrphStatusV1QrphIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QRPhRequestsAPIService.GetQrph")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -431,7 +431,7 @@ func (a *QRPhRequestsAPIService) GetQrphStatusV1QrphIdGetExecute(r ApiGetQrphSta
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListQrphV1QrphGetRequest struct {
+type ApiListQrphRequest struct {
 	ctx context.Context
 	ApiService *QRPhRequestsAPIService
 	limit *int32
@@ -442,47 +442,47 @@ type ApiListQrphV1QrphGetRequest struct {
 }
 
 // Number of items to return (1-100).
-func (r ApiListQrphV1QrphGetRequest) Limit(limit int32) ApiListQrphV1QrphGetRequest {
+func (r ApiListQrphRequest) Limit(limit int32) ApiListQrphRequest {
 	r.limit = &limit
 	return r
 }
 
 // Opaque cursor returned from the previous page for pagination.
-func (r ApiListQrphV1QrphGetRequest) Cursor(cursor string) ApiListQrphV1QrphGetRequest {
+func (r ApiListQrphRequest) Cursor(cursor string) ApiListQrphRequest {
 	r.cursor = &cursor
 	return r
 }
 
 // Filter on a specific request reference ID.
-func (r ApiListQrphV1QrphGetRequest) ReferenceId(referenceId string) ApiListQrphV1QrphGetRequest {
+func (r ApiListQrphRequest) ReferenceId(referenceId string) ApiListQrphRequest {
 	r.referenceId = &referenceId
 	return r
 }
 
-func (r ApiListQrphV1QrphGetRequest) XAPIKey(xAPIKey string) ApiListQrphV1QrphGetRequest {
+func (r ApiListQrphRequest) XAPIKey(xAPIKey string) ApiListQrphRequest {
 	r.xAPIKey = &xAPIKey
 	return r
 }
 
-func (r ApiListQrphV1QrphGetRequest) Authorization(authorization string) ApiListQrphV1QrphGetRequest {
+func (r ApiListQrphRequest) Authorization(authorization string) ApiListQrphRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiListQrphV1QrphGetRequest) Execute() (*QRPhCollectionResponse, *http.Response, error) {
-	return r.ApiService.ListQrphV1QrphGetExecute(r)
+func (r ApiListQrphRequest) Execute() (*QRPhCollectionResponse, *http.Response, error) {
+	return r.ApiService.ListQrphExecute(r)
 }
 
 /*
-ListQrphV1QrphGet List QRPh requests
+ListQrph List QRPh requests
 
 Returns a paginated collection of QRPh requests for the authenticated organization. Use `limit` and `cursor` for pagination and `reference_id` to locate a specific request.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListQrphV1QrphGetRequest
+ @return ApiListQrphRequest
 */
-func (a *QRPhRequestsAPIService) ListQrphV1QrphGet(ctx context.Context) ApiListQrphV1QrphGetRequest {
-	return ApiListQrphV1QrphGetRequest{
+func (a *QRPhRequestsAPIService) ListQrph(ctx context.Context) ApiListQrphRequest {
+	return ApiListQrphRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -490,7 +490,7 @@ func (a *QRPhRequestsAPIService) ListQrphV1QrphGet(ctx context.Context) ApiListQ
 
 // Execute executes the request
 //  @return QRPhCollectionResponse
-func (a *QRPhRequestsAPIService) ListQrphV1QrphGetExecute(r ApiListQrphV1QrphGetRequest) (*QRPhCollectionResponse, *http.Response, error) {
+func (a *QRPhRequestsAPIService) ListQrphExecute(r ApiListQrphRequest) (*QRPhCollectionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -498,7 +498,7 @@ func (a *QRPhRequestsAPIService) ListQrphV1QrphGetExecute(r ApiListQrphV1QrphGet
 		localVarReturnValue  *QRPhCollectionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QRPhRequestsAPIService.ListQrphV1QrphGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QRPhRequestsAPIService.ListQrph")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -1,16 +1,16 @@
 # magpiepay.PayoutsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.magpiepay.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_payout_v1_payouts_post**](PayoutsApi.md#create_payout_v1_payouts_post) | **POST** /v1/payouts/ | Create a payout
-[**get_payout_v1_payouts_payout_id_get**](PayoutsApi.md#get_payout_v1_payouts_payout_id_get) | **GET** /v1/payouts/{payout_id} | Get payout
-[**list_payouts_v1_payouts_get**](PayoutsApi.md#list_payouts_v1_payouts_get) | **GET** /v1/payouts/ | List payouts
+[**create_payout**](PayoutsApi.md#create_payout) | **POST** /v1/payouts/ | Create a payout
+[**get_payout**](PayoutsApi.md#get_payout) | **GET** /v1/payouts/{payout_id} | Get payout
+[**list_payouts**](PayoutsApi.md#list_payouts) | **GET** /v1/payouts/ | List payouts
 
 
-# **create_payout_v1_payouts_post**
-> PayoutSingleResponse create_payout_v1_payouts_post(payout_create_request, x_api_key=x_api_key, authorization=authorization)
+# **create_payout**
+> PayoutSingleResponse create_payout(payout_create_request, x_api_key=x_api_key, authorization=authorization)
 
 Create a payout
 
@@ -27,10 +27,10 @@ from magpiepay.models.payout_single_response import PayoutSingleResponse
 from magpiepay.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.magpiepay.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = magpiepay.Configuration(
-    host = "http://localhost"
+    host = "https://api.magpiepay.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -54,11 +54,11 @@ with magpiepay.ApiClient(configuration) as api_client:
 
     try:
         # Create a payout
-        api_response = api_instance.create_payout_v1_payouts_post(payout_create_request, x_api_key=x_api_key, authorization=authorization)
-        print("The response of PayoutsApi->create_payout_v1_payouts_post:\n")
+        api_response = api_instance.create_payout(payout_create_request, x_api_key=x_api_key, authorization=authorization)
+        print("The response of PayoutsApi->create_payout:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PayoutsApi->create_payout_v1_payouts_post: %s\n" % e)
+        print("Exception when calling PayoutsApi->create_payout: %s\n" % e)
 ```
 
 
@@ -94,8 +94,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_payout_v1_payouts_payout_id_get**
-> PayoutSingleResponse get_payout_v1_payouts_payout_id_get(payout_id, x_api_key=x_api_key, authorization=authorization)
+# **get_payout**
+> PayoutSingleResponse get_payout(payout_id, x_api_key=x_api_key, authorization=authorization)
 
 Get payout
 
@@ -111,10 +111,10 @@ from magpiepay.models.payout_single_response import PayoutSingleResponse
 from magpiepay.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.magpiepay.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = magpiepay.Configuration(
-    host = "http://localhost"
+    host = "https://api.magpiepay.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -138,11 +138,11 @@ with magpiepay.ApiClient(configuration) as api_client:
 
     try:
         # Get payout
-        api_response = api_instance.get_payout_v1_payouts_payout_id_get(payout_id, x_api_key=x_api_key, authorization=authorization)
-        print("The response of PayoutsApi->get_payout_v1_payouts_payout_id_get:\n")
+        api_response = api_instance.get_payout(payout_id, x_api_key=x_api_key, authorization=authorization)
+        print("The response of PayoutsApi->get_payout:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PayoutsApi->get_payout_v1_payouts_payout_id_get: %s\n" % e)
+        print("Exception when calling PayoutsApi->get_payout: %s\n" % e)
 ```
 
 
@@ -178,8 +178,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_payouts_v1_payouts_get**
-> PayoutCollectionResponse list_payouts_v1_payouts_get(limit=limit, cursor=cursor, reference_id=reference_id, x_api_key=x_api_key, authorization=authorization)
+# **list_payouts**
+> PayoutCollectionResponse list_payouts(limit=limit, cursor=cursor, reference_id=reference_id, x_api_key=x_api_key, authorization=authorization)
 
 List payouts
 
@@ -195,10 +195,10 @@ from magpiepay.models.payout_collection_response import PayoutCollectionResponse
 from magpiepay.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to https://api.magpiepay.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = magpiepay.Configuration(
-    host = "http://localhost"
+    host = "https://api.magpiepay.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -224,11 +224,11 @@ with magpiepay.ApiClient(configuration) as api_client:
 
     try:
         # List payouts
-        api_response = api_instance.list_payouts_v1_payouts_get(limit=limit, cursor=cursor, reference_id=reference_id, x_api_key=x_api_key, authorization=authorization)
-        print("The response of PayoutsApi->list_payouts_v1_payouts_get:\n")
+        api_response = api_instance.list_payouts(limit=limit, cursor=cursor, reference_id=reference_id, x_api_key=x_api_key, authorization=authorization)
+        print("The response of PayoutsApi->list_payouts:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PayoutsApi->list_payouts_v1_payouts_get: %s\n" % e)
+        print("Exception when calling PayoutsApi->list_payouts: %s\n" % e)
 ```
 
 
