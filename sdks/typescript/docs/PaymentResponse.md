@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { PaymentResponse } from '@magpiepay/sdk';
+import { PaymentResponse } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: PaymentResponse = {
     id,

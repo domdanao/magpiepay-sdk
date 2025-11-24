@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { PayoutSingleResponse } from '@magpiepay/sdk';
+import { PayoutSingleResponse } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: PayoutSingleResponse = {
     data,

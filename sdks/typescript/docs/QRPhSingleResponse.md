@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { QRPhSingleResponse } from '@magpiepay/sdk';
+import { QRPhSingleResponse } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: QRPhSingleResponse = {
     data,

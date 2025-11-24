@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { QRPhResponse } from '@magpiepay/sdk';
+import { QRPhResponse } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: QRPhResponse = {
     id,

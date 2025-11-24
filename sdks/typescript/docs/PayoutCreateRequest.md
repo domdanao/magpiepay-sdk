@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { PayoutCreateRequest } from '@magpiepay/sdk';
+import { PayoutCreateRequest } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: PayoutCreateRequest = {
     reference_id,

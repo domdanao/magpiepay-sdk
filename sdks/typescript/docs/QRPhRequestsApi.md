@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**cancelQrphV1QrphIdCancelPost**](#cancelqrphv1qrphidcancelpost) | **POST** /v1/qrph/{id}/cancel | Cancel a QRPh request|
-|[**createQrphV1QrphPost**](#createqrphv1qrphpost) | **POST** /v1/qrph/ | Create a QRPh request|
-|[**getQrphStatusV1QrphIdGet**](#getqrphstatusv1qrphidget) | **GET** /v1/qrph/{id} | Get QRPh status|
-|[**listQrphV1QrphGet**](#listqrphv1qrphget) | **GET** /v1/qrph/ | List QRPh requests|
+|[**cancelQrph**](#cancelqrph) | **POST** /v1/qrph/{id}/cancel | Cancel a QRPh request|
+|[**createQrph**](#createqrph) | **POST** /v1/qrph/ | Create a QRPh request|
+|[**getQrph**](#getqrph) | **GET** /v1/qrph/{id} | Get QRPh status|
+|[**listQrph**](#listqrph) | **GET** /v1/qrph/ | List QRPh requests|
 
-# **cancelQrphV1QrphIdCancelPost**
-> QRPhSingleResponse cancelQrphV1QrphIdCancelPost()
+# **cancelQrph**
+> QRPhSingleResponse cancelQrph()
 
 Cancels the specified QRPh request and returns the updated request record.
 
@@ -21,7 +21,7 @@ import {
     QRPhRequestsApi,
     Configuration,
     CancelQRPhRequest
-} from '@magpiepay/sdk';
+} from '@domdanao/magpiepay-sdk-typescript';
 
 const configuration = new Configuration();
 const apiInstance = new QRPhRequestsApi(configuration);
@@ -31,7 +31,7 @@ let xAPIKey: string; // (optional) (default to undefined)
 let authorization: string; // (optional) (default to undefined)
 let cancelQRPhRequest: CancelQRPhRequest; // (optional)
 
-const { status, data } = await apiInstance.cancelQrphV1QrphIdCancelPost(
+const { status, data } = await apiInstance.cancelQrph(
     id,
     xAPIKey,
     authorization,
@@ -71,8 +71,8 @@ const { status, data } = await apiInstance.cancelQrphV1QrphIdCancelPost(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **createQrphV1QrphPost**
-> QRPhSingleResponse createQrphV1QrphPost(canonicalCreateQRReq)
+# **createQrph**
+> QRPhSingleResponse createQrph(canonicalCreateQRReq)
 
 Creates a QRPh request from the canonical payload and returns the normalized request with the checkout URL attached.
 
@@ -83,7 +83,7 @@ import {
     QRPhRequestsApi,
     Configuration,
     CanonicalCreateQRReq
-} from '@magpiepay/sdk';
+} from '@domdanao/magpiepay-sdk-typescript';
 
 const configuration = new Configuration();
 const apiInstance = new QRPhRequestsApi(configuration);
@@ -92,7 +92,7 @@ let canonicalCreateQRReq: CanonicalCreateQRReq; //
 let xAPIKey: string; // (optional) (default to undefined)
 let authorization: string; // (optional) (default to undefined)
 
-const { status, data } = await apiInstance.createQrphV1QrphPost(
+const { status, data } = await apiInstance.createQrph(
     canonicalCreateQRReq,
     xAPIKey,
     authorization
@@ -130,8 +130,8 @@ const { status, data } = await apiInstance.createQrphV1QrphPost(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getQrphStatusV1QrphIdGet**
-> QRPhSingleResponse getQrphStatusV1QrphIdGet()
+# **getQrph**
+> QRPhSingleResponse getQrph()
 
 Returns the current QRPh request state, including checkout URLs and payment IDs.
 
@@ -141,7 +141,7 @@ Returns the current QRPh request state, including checkout URLs and payment IDs.
 import {
     QRPhRequestsApi,
     Configuration
-} from '@magpiepay/sdk';
+} from '@domdanao/magpiepay-sdk-typescript';
 
 const configuration = new Configuration();
 const apiInstance = new QRPhRequestsApi(configuration);
@@ -150,7 +150,7 @@ let id: string; // (default to undefined)
 let xAPIKey: string; // (optional) (default to undefined)
 let authorization: string; // (optional) (default to undefined)
 
-const { status, data } = await apiInstance.getQrphStatusV1QrphIdGet(
+const { status, data } = await apiInstance.getQrph(
     id,
     xAPIKey,
     authorization
@@ -188,8 +188,8 @@ const { status, data } = await apiInstance.getQrphStatusV1QrphIdGet(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **listQrphV1QrphGet**
-> QRPhCollectionResponse listQrphV1QrphGet()
+# **listQrph**
+> QRPhCollectionResponse listQrph()
 
 Returns a paginated collection of QRPh requests for the authenticated organization. Use `limit` and `cursor` for pagination and `reference_id` to locate a specific request.
 
@@ -199,7 +199,7 @@ Returns a paginated collection of QRPh requests for the authenticated organizati
 import {
     QRPhRequestsApi,
     Configuration
-} from '@magpiepay/sdk';
+} from '@domdanao/magpiepay-sdk-typescript';
 
 const configuration = new Configuration();
 const apiInstance = new QRPhRequestsApi(configuration);
@@ -210,7 +210,7 @@ let referenceId: string; //Filter on a specific request reference ID. (optional)
 let xAPIKey: string; // (optional) (default to undefined)
 let authorization: string; // (optional) (default to undefined)
 
-const { status, data } = await apiInstance.listQrphV1QrphGet(
+const { status, data } = await apiInstance.listQrph(
     limit,
     cursor,
     referenceId,

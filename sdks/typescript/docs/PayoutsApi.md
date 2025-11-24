@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**createPayoutV1PayoutsPost**](#createpayoutv1payoutspost) | **POST** /v1/payouts/ | Create a payout|
-|[**getPayoutV1PayoutsPayoutIdGet**](#getpayoutv1payoutspayoutidget) | **GET** /v1/payouts/{payout_id} | Get payout|
-|[**listPayoutsV1PayoutsGet**](#listpayoutsv1payoutsget) | **GET** /v1/payouts/ | List payouts|
+|[**createPayout**](#createpayout) | **POST** /v1/payouts/ | Create a payout|
+|[**getPayout**](#getpayout) | **GET** /v1/payouts/{payout_id} | Get payout|
+|[**listPayouts**](#listpayouts) | **GET** /v1/payouts/ | List payouts|
 
-# **createPayoutV1PayoutsPost**
-> PayoutSingleResponse createPayoutV1PayoutsPost(payoutCreateRequest)
+# **createPayout**
+> PayoutSingleResponse createPayout(payoutCreateRequest)
 
 Initiates a payout using a canonical payload and returns the normalized payout record.
 
@@ -20,7 +20,7 @@ import {
     PayoutsApi,
     Configuration,
     PayoutCreateRequest
-} from '@magpiepay/sdk';
+} from '@domdanao/magpiepay-sdk-typescript';
 
 const configuration = new Configuration();
 const apiInstance = new PayoutsApi(configuration);
@@ -29,7 +29,7 @@ let payoutCreateRequest: PayoutCreateRequest; //
 let xAPIKey: string; // (optional) (default to undefined)
 let authorization: string; // (optional) (default to undefined)
 
-const { status, data } = await apiInstance.createPayoutV1PayoutsPost(
+const { status, data } = await apiInstance.createPayout(
     payoutCreateRequest,
     xAPIKey,
     authorization
@@ -67,8 +67,8 @@ const { status, data } = await apiInstance.createPayoutV1PayoutsPost(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getPayoutV1PayoutsPayoutIdGet**
-> PayoutSingleResponse getPayoutV1PayoutsPayoutIdGet()
+# **getPayout**
+> PayoutSingleResponse getPayout()
 
 Retrieves the latest state for a payout.
 
@@ -78,7 +78,7 @@ Retrieves the latest state for a payout.
 import {
     PayoutsApi,
     Configuration
-} from '@magpiepay/sdk';
+} from '@domdanao/magpiepay-sdk-typescript';
 
 const configuration = new Configuration();
 const apiInstance = new PayoutsApi(configuration);
@@ -87,7 +87,7 @@ let payoutId: string; // (default to undefined)
 let xAPIKey: string; // (optional) (default to undefined)
 let authorization: string; // (optional) (default to undefined)
 
-const { status, data } = await apiInstance.getPayoutV1PayoutsPayoutIdGet(
+const { status, data } = await apiInstance.getPayout(
     payoutId,
     xAPIKey,
     authorization
@@ -125,8 +125,8 @@ const { status, data } = await apiInstance.getPayoutV1PayoutsPayoutIdGet(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **listPayoutsV1PayoutsGet**
-> PayoutCollectionResponse listPayoutsV1PayoutsGet()
+# **listPayouts**
+> PayoutCollectionResponse listPayouts()
 
 Returns a paginated collection of payouts for the authenticated organization.
 
@@ -136,7 +136,7 @@ Returns a paginated collection of payouts for the authenticated organization.
 import {
     PayoutsApi,
     Configuration
-} from '@magpiepay/sdk';
+} from '@domdanao/magpiepay-sdk-typescript';
 
 const configuration = new Configuration();
 const apiInstance = new PayoutsApi(configuration);
@@ -147,7 +147,7 @@ let referenceId: string; //Filter payouts by reference ID. (optional) (default t
 let xAPIKey: string; // (optional) (default to undefined)
 let authorization: string; // (optional) (default to undefined)
 
-const { status, data } = await apiInstance.listPayoutsV1PayoutsGet(
+const { status, data } = await apiInstance.listPayouts(
     limit,
     cursor,
     referenceId,

@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { PayoutResponse } from '@magpiepay/sdk';
+import { PayoutResponse } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: PayoutResponse = {
     id,

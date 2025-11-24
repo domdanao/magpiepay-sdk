@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { PayoutDestination } from '@magpiepay/sdk';
+import { PayoutDestination } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: PayoutDestination = {
     first_name,

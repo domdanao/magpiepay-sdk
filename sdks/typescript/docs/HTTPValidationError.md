@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { HTTPValidationError } from '@magpiepay/sdk';
+import { HTTPValidationError } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: HTTPValidationError = {
     detail,

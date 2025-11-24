@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**getPaymentV1PaymentsPaymentIdGet**](#getpaymentv1paymentspaymentidget) | **GET** /v1/payments/{payment_id} | Get payment|
-|[**listPaymentsV1PaymentsGet**](#listpaymentsv1paymentsget) | **GET** /v1/payments/ | List payments|
+|[**getPayment**](#getpayment) | **GET** /v1/payments/{payment_id} | Get payment|
+|[**listPayments**](#listpayments) | **GET** /v1/payments/ | List payments|
 
-# **getPaymentV1PaymentsPaymentIdGet**
-> PaymentSingleResponse getPaymentV1PaymentsPaymentIdGet()
+# **getPayment**
+> PaymentSingleResponse getPayment()
 
 Retrieve the current state of a QRPh payment.
 
@@ -18,7 +18,7 @@ Retrieve the current state of a QRPh payment.
 import {
     PaymentsApi,
     Configuration
-} from '@magpiepay/sdk';
+} from '@domdanao/magpiepay-sdk-typescript';
 
 const configuration = new Configuration();
 const apiInstance = new PaymentsApi(configuration);
@@ -27,7 +27,7 @@ let paymentId: string; // (default to undefined)
 let xAPIKey: string; // (optional) (default to undefined)
 let authorization: string; // (optional) (default to undefined)
 
-const { status, data } = await apiInstance.getPaymentV1PaymentsPaymentIdGet(
+const { status, data } = await apiInstance.getPayment(
     paymentId,
     xAPIKey,
     authorization
@@ -65,8 +65,8 @@ const { status, data } = await apiInstance.getPaymentV1PaymentsPaymentIdGet(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **listPaymentsV1PaymentsGet**
-> PaymentCollectionResponse listPaymentsV1PaymentsGet()
+# **listPayments**
+> PaymentCollectionResponse listPayments()
 
 Returns a paginated list of QRPh payments for the authenticated organization.
 
@@ -76,7 +76,7 @@ Returns a paginated list of QRPh payments for the authenticated organization.
 import {
     PaymentsApi,
     Configuration
-} from '@magpiepay/sdk';
+} from '@domdanao/magpiepay-sdk-typescript';
 
 const configuration = new Configuration();
 const apiInstance = new PaymentsApi(configuration);
@@ -86,7 +86,7 @@ let cursor: string; //Cursor returned from the previous page. (optional) (defaul
 let xAPIKey: string; // (optional) (default to undefined)
 let authorization: string; // (optional) (default to undefined)
 
-const { status, data } = await apiInstance.listPaymentsV1PaymentsGet(
+const { status, data } = await apiInstance.listPayments(
     limit,
     cursor,
     xAPIKey,

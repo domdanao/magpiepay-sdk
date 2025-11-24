@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { ValidationErrorLocInner } from '@magpiepay/sdk';
+import { ValidationErrorLocInner } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: ValidationErrorLocInner = {
 };

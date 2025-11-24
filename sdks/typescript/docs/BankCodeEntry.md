@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { BankCodeEntry } from '@magpiepay/sdk';
+import { BankCodeEntry } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: BankCodeEntry = {
     code,

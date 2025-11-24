@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { ApiError } from '@magpiepay/sdk';
+import { ApiError } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: ApiError = {
     code,

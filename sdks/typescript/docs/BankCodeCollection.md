@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { BankCodeCollection } from '@magpiepay/sdk';
+import { BankCodeCollection } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: BankCodeCollection = {
     data,

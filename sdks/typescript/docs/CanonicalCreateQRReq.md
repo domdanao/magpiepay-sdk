@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { CanonicalCreateQRReq } from '@magpiepay/sdk';
+import { CanonicalCreateQRReq } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: CanonicalCreateQRReq = {
     reference_id,

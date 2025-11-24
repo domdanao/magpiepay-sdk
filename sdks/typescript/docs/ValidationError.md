@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { ValidationError } from '@magpiepay/sdk';
+import { ValidationError } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: ValidationError = {
     loc,

@@ -322,9 +322,9 @@ export const PaymentsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaymentV1PaymentsPaymentIdGet: async (paymentId: string, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPayment: async (paymentId: string, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'paymentId' is not null or undefined
-            assertParamExists('getPaymentV1PaymentsPaymentIdGet', 'paymentId', paymentId)
+            assertParamExists('getPayment', 'paymentId', paymentId)
             const localVarPath = `/v1/payments/{payment_id}`
                 .replace(`{${"payment_id"}}`, encodeURIComponent(String(paymentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -369,7 +369,7 @@ export const PaymentsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listPaymentsV1PaymentsGet: async (limit?: number, cursor?: string | null, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        listPayments: async (limit?: number, cursor?: string | null, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/payments/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -429,10 +429,10 @@ export const PaymentsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPaymentV1PaymentsPaymentIdGet(paymentId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaymentSingleResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPaymentV1PaymentsPaymentIdGet(paymentId, xAPIKey, authorization, options);
+        async getPayment(paymentId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaymentSingleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPayment(paymentId, xAPIKey, authorization, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PaymentsApi.getPaymentV1PaymentsPaymentIdGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['PaymentsApi.getPayment']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -445,10 +445,10 @@ export const PaymentsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listPaymentsV1PaymentsGet(limit?: number, cursor?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaymentCollectionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listPaymentsV1PaymentsGet(limit, cursor, xAPIKey, authorization, options);
+        async listPayments(limit?: number, cursor?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaymentCollectionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listPayments(limit, cursor, xAPIKey, authorization, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PaymentsApi.listPaymentsV1PaymentsGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['PaymentsApi.listPayments']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -469,8 +469,8 @@ export const PaymentsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaymentV1PaymentsPaymentIdGet(paymentId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PaymentSingleResponse> {
-            return localVarFp.getPaymentV1PaymentsPaymentIdGet(paymentId, xAPIKey, authorization, options).then((request) => request(axios, basePath));
+        getPayment(paymentId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PaymentSingleResponse> {
+            return localVarFp.getPayment(paymentId, xAPIKey, authorization, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a paginated list of QRPh payments for the authenticated organization.
@@ -482,8 +482,8 @@ export const PaymentsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listPaymentsV1PaymentsGet(limit?: number, cursor?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PaymentCollectionResponse> {
-            return localVarFp.listPaymentsV1PaymentsGet(limit, cursor, xAPIKey, authorization, options).then((request) => request(axios, basePath));
+        listPayments(limit?: number, cursor?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PaymentCollectionResponse> {
+            return localVarFp.listPayments(limit, cursor, xAPIKey, authorization, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -501,8 +501,8 @@ export class PaymentsApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getPaymentV1PaymentsPaymentIdGet(paymentId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
-        return PaymentsApiFp(this.configuration).getPaymentV1PaymentsPaymentIdGet(paymentId, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
+    public getPayment(paymentId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
+        return PaymentsApiFp(this.configuration).getPayment(paymentId, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -515,8 +515,8 @@ export class PaymentsApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public listPaymentsV1PaymentsGet(limit?: number, cursor?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
-        return PaymentsApiFp(this.configuration).listPaymentsV1PaymentsGet(limit, cursor, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
+    public listPayments(limit?: number, cursor?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
+        return PaymentsApiFp(this.configuration).listPayments(limit, cursor, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -536,9 +536,9 @@ export const PayoutsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createPayoutV1PayoutsPost: async (payoutCreateRequest: PayoutCreateRequest, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createPayout: async (payoutCreateRequest: PayoutCreateRequest, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'payoutCreateRequest' is not null or undefined
-            assertParamExists('createPayoutV1PayoutsPost', 'payoutCreateRequest', payoutCreateRequest)
+            assertParamExists('createPayout', 'payoutCreateRequest', payoutCreateRequest)
             const localVarPath = `/v1/payouts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -584,9 +584,9 @@ export const PayoutsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPayoutV1PayoutsPayoutIdGet: async (payoutId: string, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPayout: async (payoutId: string, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'payoutId' is not null or undefined
-            assertParamExists('getPayoutV1PayoutsPayoutIdGet', 'payoutId', payoutId)
+            assertParamExists('getPayout', 'payoutId', payoutId)
             const localVarPath = `/v1/payouts/{payout_id}`
                 .replace(`{${"payout_id"}}`, encodeURIComponent(String(payoutId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -632,7 +632,7 @@ export const PayoutsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listPayoutsV1PayoutsGet: async (limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        listPayouts: async (limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/payouts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -696,10 +696,10 @@ export const PayoutsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createPayoutV1PayoutsPost(payoutCreateRequest: PayoutCreateRequest, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutSingleResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createPayoutV1PayoutsPost(payoutCreateRequest, xAPIKey, authorization, options);
+        async createPayout(payoutCreateRequest: PayoutCreateRequest, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutSingleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createPayout(payoutCreateRequest, xAPIKey, authorization, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PayoutsApi.createPayoutV1PayoutsPost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['PayoutsApi.createPayout']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -711,10 +711,10 @@ export const PayoutsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPayoutV1PayoutsPayoutIdGet(payoutId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutSingleResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPayoutV1PayoutsPayoutIdGet(payoutId, xAPIKey, authorization, options);
+        async getPayout(payoutId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutSingleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPayout(payoutId, xAPIKey, authorization, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PayoutsApi.getPayoutV1PayoutsPayoutIdGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['PayoutsApi.getPayout']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -728,10 +728,10 @@ export const PayoutsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listPayoutsV1PayoutsGet(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutCollectionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listPayoutsV1PayoutsGet(limit, cursor, referenceId, xAPIKey, authorization, options);
+        async listPayouts(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PayoutCollectionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listPayouts(limit, cursor, referenceId, xAPIKey, authorization, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PayoutsApi.listPayoutsV1PayoutsGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['PayoutsApi.listPayouts']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -752,8 +752,8 @@ export const PayoutsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createPayoutV1PayoutsPost(payoutCreateRequest: PayoutCreateRequest, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PayoutSingleResponse> {
-            return localVarFp.createPayoutV1PayoutsPost(payoutCreateRequest, xAPIKey, authorization, options).then((request) => request(axios, basePath));
+        createPayout(payoutCreateRequest: PayoutCreateRequest, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PayoutSingleResponse> {
+            return localVarFp.createPayout(payoutCreateRequest, xAPIKey, authorization, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves the latest state for a payout.
@@ -764,8 +764,8 @@ export const PayoutsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPayoutV1PayoutsPayoutIdGet(payoutId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PayoutSingleResponse> {
-            return localVarFp.getPayoutV1PayoutsPayoutIdGet(payoutId, xAPIKey, authorization, options).then((request) => request(axios, basePath));
+        getPayout(payoutId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PayoutSingleResponse> {
+            return localVarFp.getPayout(payoutId, xAPIKey, authorization, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a paginated collection of payouts for the authenticated organization.
@@ -778,8 +778,8 @@ export const PayoutsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listPayoutsV1PayoutsGet(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PayoutCollectionResponse> {
-            return localVarFp.listPayoutsV1PayoutsGet(limit, cursor, referenceId, xAPIKey, authorization, options).then((request) => request(axios, basePath));
+        listPayouts(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PayoutCollectionResponse> {
+            return localVarFp.listPayouts(limit, cursor, referenceId, xAPIKey, authorization, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -797,8 +797,8 @@ export class PayoutsApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public createPayoutV1PayoutsPost(payoutCreateRequest: PayoutCreateRequest, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
-        return PayoutsApiFp(this.configuration).createPayoutV1PayoutsPost(payoutCreateRequest, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
+    public createPayout(payoutCreateRequest: PayoutCreateRequest, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
+        return PayoutsApiFp(this.configuration).createPayout(payoutCreateRequest, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -810,8 +810,8 @@ export class PayoutsApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getPayoutV1PayoutsPayoutIdGet(payoutId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
-        return PayoutsApiFp(this.configuration).getPayoutV1PayoutsPayoutIdGet(payoutId, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
+    public getPayout(payoutId: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
+        return PayoutsApiFp(this.configuration).getPayout(payoutId, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -825,8 +825,8 @@ export class PayoutsApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public listPayoutsV1PayoutsGet(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
-        return PayoutsApiFp(this.configuration).listPayoutsV1PayoutsGet(limit, cursor, referenceId, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
+    public listPayouts(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
+        return PayoutsApiFp(this.configuration).listPayouts(limit, cursor, referenceId, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -847,9 +847,9 @@ export const QRPhRequestsApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelQrphV1QrphIdCancelPost: async (id: string, xAPIKey?: string | null, authorization?: string | null, cancelQRPhRequest?: CancelQRPhRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        cancelQrph: async (id: string, xAPIKey?: string | null, authorization?: string | null, cancelQRPhRequest?: CancelQRPhRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('cancelQrphV1QrphIdCancelPost', 'id', id)
+            assertParamExists('cancelQrph', 'id', id)
             const localVarPath = `/v1/qrph/{id}/cancel`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -896,9 +896,9 @@ export const QRPhRequestsApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createQrphV1QrphPost: async (canonicalCreateQRReq: CanonicalCreateQRReq, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createQrph: async (canonicalCreateQRReq: CanonicalCreateQRReq, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'canonicalCreateQRReq' is not null or undefined
-            assertParamExists('createQrphV1QrphPost', 'canonicalCreateQRReq', canonicalCreateQRReq)
+            assertParamExists('createQrph', 'canonicalCreateQRReq', canonicalCreateQRReq)
             const localVarPath = `/v1/qrph/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -944,9 +944,9 @@ export const QRPhRequestsApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getQrphStatusV1QrphIdGet: async (id: string, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getQrph: async (id: string, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('getQrphStatusV1QrphIdGet', 'id', id)
+            assertParamExists('getQrph', 'id', id)
             const localVarPath = `/v1/qrph/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -992,7 +992,7 @@ export const QRPhRequestsApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listQrphV1QrphGet: async (limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        listQrph: async (limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/qrph/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1057,10 +1057,10 @@ export const QRPhRequestsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cancelQrphV1QrphIdCancelPost(id: string, xAPIKey?: string | null, authorization?: string | null, cancelQRPhRequest?: CancelQRPhRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QRPhSingleResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelQrphV1QrphIdCancelPost(id, xAPIKey, authorization, cancelQRPhRequest, options);
+        async cancelQrph(id: string, xAPIKey?: string | null, authorization?: string | null, cancelQRPhRequest?: CancelQRPhRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QRPhSingleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelQrph(id, xAPIKey, authorization, cancelQRPhRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['QRPhRequestsApi.cancelQrphV1QrphIdCancelPost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['QRPhRequestsApi.cancelQrph']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -1072,10 +1072,10 @@ export const QRPhRequestsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createQrphV1QrphPost(canonicalCreateQRReq: CanonicalCreateQRReq, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QRPhSingleResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createQrphV1QrphPost(canonicalCreateQRReq, xAPIKey, authorization, options);
+        async createQrph(canonicalCreateQRReq: CanonicalCreateQRReq, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QRPhSingleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createQrph(canonicalCreateQRReq, xAPIKey, authorization, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['QRPhRequestsApi.createQrphV1QrphPost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['QRPhRequestsApi.createQrph']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -1087,10 +1087,10 @@ export const QRPhRequestsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getQrphStatusV1QrphIdGet(id: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QRPhSingleResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getQrphStatusV1QrphIdGet(id, xAPIKey, authorization, options);
+        async getQrph(id: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QRPhSingleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getQrph(id, xAPIKey, authorization, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['QRPhRequestsApi.getQrphStatusV1QrphIdGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['QRPhRequestsApi.getQrph']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -1104,10 +1104,10 @@ export const QRPhRequestsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listQrphV1QrphGet(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QRPhCollectionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listQrphV1QrphGet(limit, cursor, referenceId, xAPIKey, authorization, options);
+        async listQrph(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<QRPhCollectionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listQrph(limit, cursor, referenceId, xAPIKey, authorization, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['QRPhRequestsApi.listQrphV1QrphGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['QRPhRequestsApi.listQrph']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -1129,8 +1129,8 @@ export const QRPhRequestsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelQrphV1QrphIdCancelPost(id: string, xAPIKey?: string | null, authorization?: string | null, cancelQRPhRequest?: CancelQRPhRequest, options?: RawAxiosRequestConfig): AxiosPromise<QRPhSingleResponse> {
-            return localVarFp.cancelQrphV1QrphIdCancelPost(id, xAPIKey, authorization, cancelQRPhRequest, options).then((request) => request(axios, basePath));
+        cancelQrph(id: string, xAPIKey?: string | null, authorization?: string | null, cancelQRPhRequest?: CancelQRPhRequest, options?: RawAxiosRequestConfig): AxiosPromise<QRPhSingleResponse> {
+            return localVarFp.cancelQrph(id, xAPIKey, authorization, cancelQRPhRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Creates a QRPh request from the canonical payload and returns the normalized request with the checkout URL attached.
@@ -1141,8 +1141,8 @@ export const QRPhRequestsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createQrphV1QrphPost(canonicalCreateQRReq: CanonicalCreateQRReq, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<QRPhSingleResponse> {
-            return localVarFp.createQrphV1QrphPost(canonicalCreateQRReq, xAPIKey, authorization, options).then((request) => request(axios, basePath));
+        createQrph(canonicalCreateQRReq: CanonicalCreateQRReq, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<QRPhSingleResponse> {
+            return localVarFp.createQrph(canonicalCreateQRReq, xAPIKey, authorization, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the current QRPh request state, including checkout URLs and payment IDs.
@@ -1153,8 +1153,8 @@ export const QRPhRequestsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getQrphStatusV1QrphIdGet(id: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<QRPhSingleResponse> {
-            return localVarFp.getQrphStatusV1QrphIdGet(id, xAPIKey, authorization, options).then((request) => request(axios, basePath));
+        getQrph(id: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<QRPhSingleResponse> {
+            return localVarFp.getQrph(id, xAPIKey, authorization, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns a paginated collection of QRPh requests for the authenticated organization. Use `limit` and `cursor` for pagination and `reference_id` to locate a specific request.
@@ -1167,8 +1167,8 @@ export const QRPhRequestsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listQrphV1QrphGet(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<QRPhCollectionResponse> {
-            return localVarFp.listQrphV1QrphGet(limit, cursor, referenceId, xAPIKey, authorization, options).then((request) => request(axios, basePath));
+        listQrph(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<QRPhCollectionResponse> {
+            return localVarFp.listQrph(limit, cursor, referenceId, xAPIKey, authorization, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1187,8 +1187,8 @@ export class QRPhRequestsApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public cancelQrphV1QrphIdCancelPost(id: string, xAPIKey?: string | null, authorization?: string | null, cancelQRPhRequest?: CancelQRPhRequest, options?: RawAxiosRequestConfig) {
-        return QRPhRequestsApiFp(this.configuration).cancelQrphV1QrphIdCancelPost(id, xAPIKey, authorization, cancelQRPhRequest, options).then((request) => request(this.axios, this.basePath));
+    public cancelQrph(id: string, xAPIKey?: string | null, authorization?: string | null, cancelQRPhRequest?: CancelQRPhRequest, options?: RawAxiosRequestConfig) {
+        return QRPhRequestsApiFp(this.configuration).cancelQrph(id, xAPIKey, authorization, cancelQRPhRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1200,8 +1200,8 @@ export class QRPhRequestsApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public createQrphV1QrphPost(canonicalCreateQRReq: CanonicalCreateQRReq, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
-        return QRPhRequestsApiFp(this.configuration).createQrphV1QrphPost(canonicalCreateQRReq, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
+    public createQrph(canonicalCreateQRReq: CanonicalCreateQRReq, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
+        return QRPhRequestsApiFp(this.configuration).createQrph(canonicalCreateQRReq, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1213,8 +1213,8 @@ export class QRPhRequestsApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getQrphStatusV1QrphIdGet(id: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
-        return QRPhRequestsApiFp(this.configuration).getQrphStatusV1QrphIdGet(id, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
+    public getQrph(id: string, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
+        return QRPhRequestsApiFp(this.configuration).getQrph(id, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1228,8 +1228,8 @@ export class QRPhRequestsApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public listQrphV1QrphGet(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
-        return QRPhRequestsApiFp(this.configuration).listQrphV1QrphGet(limit, cursor, referenceId, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
+    public listQrph(limit?: number, cursor?: string | null, referenceId?: string | null, xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
+        return QRPhRequestsApiFp(this.configuration).listQrph(limit, cursor, referenceId, xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1248,7 +1248,7 @@ export const ReferencesApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listBankCodesV1ReferencesBankCodesGet: async (xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        listBankCodes: async (xAPIKey?: string | null, authorization?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/references/bank_codes`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1299,10 +1299,10 @@ export const ReferencesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listBankCodesV1ReferencesBankCodesGet(xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BankCodeCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listBankCodesV1ReferencesBankCodesGet(xAPIKey, authorization, options);
+        async listBankCodes(xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BankCodeCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listBankCodes(xAPIKey, authorization, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ReferencesApi.listBankCodesV1ReferencesBankCodesGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ReferencesApi.listBankCodes']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -1322,8 +1322,8 @@ export const ReferencesApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listBankCodesV1ReferencesBankCodesGet(xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<BankCodeCollection> {
-            return localVarFp.listBankCodesV1ReferencesBankCodesGet(xAPIKey, authorization, options).then((request) => request(axios, basePath));
+        listBankCodes(xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<BankCodeCollection> {
+            return localVarFp.listBankCodes(xAPIKey, authorization, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1340,8 +1340,8 @@ export class ReferencesApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public listBankCodesV1ReferencesBankCodesGet(xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
-        return ReferencesApiFp(this.configuration).listBankCodesV1ReferencesBankCodesGet(xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
+    public listBankCodes(xAPIKey?: string | null, authorization?: string | null, options?: RawAxiosRequestConfig) {
+        return ReferencesApiFp(this.configuration).listBankCodes(xAPIKey, authorization, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

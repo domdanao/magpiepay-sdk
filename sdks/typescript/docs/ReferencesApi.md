@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**listBankCodesV1ReferencesBankCodesGet**](#listbankcodesv1referencesbankcodesget) | **GET** /v1/references/bank_codes | List Bank Codes|
+|[**listBankCodes**](#listbankcodes) | **GET** /v1/references/bank_codes | List Bank Codes|
 
-# **listBankCodesV1ReferencesBankCodesGet**
-> BankCodeCollection listBankCodesV1ReferencesBankCodesGet()
+# **listBankCodes**
+> BankCodeCollection listBankCodes()
 
 
 ### Example
@@ -16,7 +16,7 @@ All URIs are relative to *http://localhost*
 import {
     ReferencesApi,
     Configuration
-} from '@magpiepay/sdk';
+} from '@domdanao/magpiepay-sdk-typescript';
 
 const configuration = new Configuration();
 const apiInstance = new ReferencesApi(configuration);
@@ -24,7 +24,7 @@ const apiInstance = new ReferencesApi(configuration);
 let xAPIKey: string; // (optional) (default to undefined)
 let authorization: string; // (optional) (default to undefined)
 
-const { status, data } = await apiInstance.listBankCodesV1ReferencesBankCodesGet(
+const { status, data } = await apiInstance.listBankCodes(
     xAPIKey,
     authorization
 );

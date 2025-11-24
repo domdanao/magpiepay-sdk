@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { CancelQRPhRequest } from '@magpiepay/sdk';
+import { CancelQRPhRequest } from '@domdanao/magpiepay-sdk-typescript';
 
 const instance: CancelQRPhRequest = {
     cancellation_reason,

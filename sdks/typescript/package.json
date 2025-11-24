@@ -1,10 +1,7 @@
 {
   "name": "@domdanao/magpiepay-sdk-typescript",
-  "version": "1.0.0-alpha.5",
-  "publishConfig": {
-    "access": "public"
-  },
-  "description": "OpenAPI client for @magpiepay/sdk",
+  "version": "1.0.0",
+  "description": "OpenAPI client for @domdanao/magpiepay-sdk-typescript",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
@@ -15,7 +12,7 @@
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "@magpiepay/sdk"
+    "@domdanao/magpiepay-sdk-typescript"
   ],
   "license": "Unlicense",
   "main": "./dist/index.js",
