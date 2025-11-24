@@ -12,57 +12,21 @@ composer require domdanao/magpiepay-sdk-php
 
 ## Laravel Integration
 
-The SDK is fully compatible with Laravel. Here is the recommended way to integrate it.
+The SDK is fully compatible with Laravel and includes a Service Provider for **automatic integration**.
 
 ### 1. Configure Credentials
 
-Add your API key to your `.env` file:
+Simply add your API key to your `.env` file:
 
 ```dotenv
 MAGPIE_API_KEY=sk_live_...
 ```
 
-Add the configuration to `config/services.php`:
+That's it! The SDK will automatically register the `Configuration` and API classes (like `PaymentsApi`, `PayoutsApi`) as singletons in the service container.
 
-```php
-'magpie' => [
-    'key' => env('MAGPIE_API_KEY'),
-],
-```
+### 2. Usage in Controllers
 
-### 2. Register Service Provider
-
-In your `app/Providers/AppServiceProvider.php`, register the client so it can be automatically injected into your controllers.
-
-```php
-use MagpiePay\Configuration;
-use MagpiePay\Api\PaymentsApi;
-use MagpiePay\Api\PayoutsApi;
-use MagpiePay\Api\QRPhRequestsApi;
-use MagpiePay\Api\ReferencesApi;
-use GuzzleHttp\Client;
-
-public function register()
-{
-    $this->app->singleton(Configuration::class, function ($app) {
-        return Configuration::getDefaultConfiguration()
-            ->setUsername(config('services.magpie.key'))
-            ->setPassword('');
-    });
-
-    $this->app->bind(PaymentsApi::class, function ($app) {
-        return new PaymentsApi(new Client(), $app->make(Configuration::class));
-    });
-
-    $this->app->bind(PayoutsApi::class, function ($app) {
-        return new PayoutsApi(new Client(), $app->make(Configuration::class));
-    });
-    
-    // Bind other APIs as needed...
-}
-```
-
-### 3. Usage in Controllers
+You can now type-hint the API classes in your controllers, and Laravel will automatically inject the configured instance.
 
 Now you can type-hint the API classes in your controllers, and Laravel will automatically inject the configured instance.
 
