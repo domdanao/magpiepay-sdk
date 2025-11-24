@@ -39,5 +39,15 @@
         "psr-4": {
             "MagpiePay\\Test\\": "test/"
         }
+    },
+    "suggest": {
+        "illuminate/support": "Required for Laravel integration"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MagpiePay\\Laravel\\MagpiePayServiceProvider"
+            ]
+        }
     }
 }
