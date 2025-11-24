@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.openapitools:magpiepay-android:1.0.0")
+    implementation("com.domdanao.magpiepay:magpiepay-android:1.0.0")
     implementation("com.squareup.moshi:moshi-kotlin:1.15.2")
     implementation("com.squareup.moshi:moshi-adapters:1.15.2")
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")

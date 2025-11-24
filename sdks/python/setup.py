@@ -33,17 +33,17 @@ REQUIRES = [
 setup(
     name=NAME,
     version=VERSION,
-    description="Magpie API Documentation",
+    description="MagpiePay API Documentation",
     author="OpenAPI Generator community",
     author_email="team@openapitools.org",
     url="",
-    keywords=["OpenAPI", "OpenAPI-Generator", "Magpie API Documentation"],
+    keywords=["OpenAPI", "OpenAPI-Generator", "MagpiePay API Documentation"],
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
     long_description_content_type='text/markdown',
     long_description="""\
-    Magpie API for QRPh and Disbursement services
+    MagpiePay API for QRPh and Disbursement services
     """,  # noqa: E501
     package_data={"magpiepay": ["py.typed"]},
 )

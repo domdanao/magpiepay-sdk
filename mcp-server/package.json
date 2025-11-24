@@ -1,0 +1,27 @@
+{
+  "name": "@domdanao/magpiepay-mcp-server",
+  "version": "1.0.0",
+  "description": "MagpiePay MCP Server",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Dominick Danao",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@domdanao/magpiepay-sdk-typescript": "file:../sdks/typescript",
+    "@modelcontextprotocol/sdk": "^1.22.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.1",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
+    "typescript": "^5.9.3"
+  }
+}

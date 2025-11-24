@@ -7,13 +7,13 @@ let package = Package(
         .macOS(.v10_15)
     ],
     dependencies: [
-        .package(path: "../../sdks/MagpiePay")
+        .package(path: "../../sdks/DomDanaoMagpiePay")
     ],
     targets: [
         .executableTarget(
             name: "MagpiePaySample",
             dependencies: [
-                .product(name: "MagpiePay", package: "MagpiePay")
+                .product(name: "DomDanaoMagpiePaySdkSwift", package: "DomDanaoMagpiePaySdkSwift")
             ],
             swiftSettings: [
                 .unsafeFlags(["-strict-concurrency=minimal"])

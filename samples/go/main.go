@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	magpiepay "github.com/domdanao/magpiepay-sdk/sdks/go"
+	magpiepay "github.com/domdanao/magpiepay-sdk-go"
 )
 
 func main() {
