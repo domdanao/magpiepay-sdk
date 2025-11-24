@@ -25,7 +25,7 @@ $apiInstance = new MagpiePay\Api\ReferencesApi(
 
 try {
     echo "Fetching bank codes...\n";
-    $result = $apiInstance->listBankCodesV1ReferencesBankCodesGet($apiKey);
+    $result = $apiInstance->listBankCodes($apiKey);
     echo "Success! Found bank codes:\n";
 
     // The result is an instance of BankCodeCollection, which contains 'data' property
@@ -41,5 +41,5 @@ try {
     }
 
 } catch (Exception $e) {
-    echo 'Exception when calling ReferencesApi->listBankCodesV1ReferencesBankCodesGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ReferencesApi->listBankCodes: ', $e->getMessage(), PHP_EOL;
 }
