@@ -13,7 +13,7 @@ let package = Package(
         .executableTarget(
             name: "MagpiePaySample",
             dependencies: [
-                .product(name: "DomDanaoMagpiePay", package: "DomDanaoMagpiePay")
+                .product(name: "DomDanaoMagpiePaySdkSwift", package: "DomDanaoMagpiePay")
             ],
             swiftSettings: [
                 .unsafeFlags(["-strict-concurrency=minimal"])

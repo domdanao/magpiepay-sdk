@@ -70,7 +70,7 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\magpiepay-sample.jar;%APP_HOME%\lib\magpiepay-android-1.0.0-alpha.1.jar;%APP_HOME%\lib\logging-interceptor-5.1.0.jar;%APP_HOME%\lib\converter-moshi-3.0.0.jar;%APP_HOME%\lib\converter-scalars-3.0.0.jar;%APP_HOME%\lib\retrofit-3.0.0.jar;%APP_HOME%\lib\moshi-kotlin-1.15.2.jar;%APP_HOME%\lib\kotlin-reflect-2.2.20.jar;%APP_HOME%\lib\moshi-adapters-1.15.2.jar;%APP_HOME%\lib\moshi-1.15.2.jar;%APP_HOME%\lib\kotlin-stdlib-jdk8-2.2.20.jar;%APP_HOME%\lib\okhttp-jvm-5.1.0.jar;%APP_HOME%\lib\kotlin-stdlib-jdk7-2.2.20.jar;%APP_HOME%\lib\okio-jvm-3.15.0.jar;%APP_HOME%\lib\kotlin-stdlib-2.2.20.jar;%APP_HOME%\lib\annotations-13.0.jar
+set CLASSPATH=%APP_HOME%\lib\magpiepay-sample.jar;%APP_HOME%\lib\magpiepay-sdk-kotlin-1.0.0-alpha.1.jar;%APP_HOME%\lib\logging-interceptor-5.1.0.jar;%APP_HOME%\lib\converter-moshi-3.0.0.jar;%APP_HOME%\lib\converter-scalars-3.0.0.jar;%APP_HOME%\lib\retrofit-3.0.0.jar;%APP_HOME%\lib\moshi-kotlin-1.15.2.jar;%APP_HOME%\lib\kotlin-reflect-2.2.20.jar;%APP_HOME%\lib\moshi-adapters-1.15.2.jar;%APP_HOME%\lib\moshi-1.15.2.jar;%APP_HOME%\lib\kotlin-stdlib-jdk8-2.2.20.jar;%APP_HOME%\lib\okhttp-jvm-5.1.0.jar;%APP_HOME%\lib\kotlin-stdlib-jdk7-2.2.20.jar;%APP_HOME%\lib\okio-jvm-3.15.0.jar;%APP_HOME%\lib\kotlin-stdlib-2.2.20.jar;%APP_HOME%\lib\annotations-13.0.jar
 
 
 @rem Execute magpiepay-sample
