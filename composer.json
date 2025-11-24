@@ -1,5 +1,5 @@
 {
-    "name": "domdanao/magpiepay-php",
+    "name": "domdanao/magpiepay-sdk-php",
     "description": "Magpie API for QRPh and Disbursement services",
     "keywords": [
         "openapitools",
