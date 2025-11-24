@@ -1,51 +1,145 @@
-## @domdanao/magpiepay-sdk-typescript@1.0.0-alpha.3
+# @domdanao/magpiepay-sdk-typescript
 
-This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
+The official TypeScript/JavaScript client for the MagpiePay API.
 
-Environment
-* Node.js
-* Webpack
-* Browserify
+## Installation
 
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
-
-Module system
-* CommonJS
-* ES6 module system
-
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition will be automatically resolved via `package.json`. ([Reference](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html))
-
-### Building
-
-To build and compile the typescript sources to javascript use:
-```
-npm install
-npm run build
+```bash
+npm install @domdanao/magpiepay-sdk-typescript
 ```
 
-### Publishing
+## Getting Started
 
-First build the package then run `npm publish`
+### Authentication
 
-### Consuming
+Initialize the client with your API key. The API uses Basic Authentication, where the username is your API key and the password is left empty.
 
-navigate to the folder of your consuming project and run one of the following commands.
+```typescript
+import { Configuration, PaymentsApi } from '@domdanao/magpiepay-sdk-typescript';
 
-_published:_
+const config = new Configuration({
+    username: 'YOUR_API_KEY',
+    password: '', // Password is empty for MagpiePay API Key auth
+});
 
-```
-npm install @domdanao/magpiepay-sdk-typescript@1.0.0-alpha.3 --save
-```
-
-_unPublished (not recommended):_
-
-```
-npm install PATH_TO_GENERATED_PACKAGE --save
+const paymentsApi = new PaymentsApi(config);
 ```
 
-### Documentation for API Endpoints
+### Quick Start: List Bank Codes
+
+```typescript
+import { Configuration, ReferencesApi } from '@domdanao/magpiepay-sdk-typescript';
+
+const config = new Configuration({
+    username: 'YOUR_API_KEY',
+    password: '',
+});
+
+const referencesApi = new ReferencesApi(config);
+
+async function listBanks() {
+    try {
+        const response = await referencesApi.listBankCodesV1ReferencesBankCodesGet();
+        console.log('Bank Codes:', response.data);
+    } catch (error) {
+        console.error('Error fetching bank codes:', error);
+    }
+}
+
+listBanks();
+```
+
+## Recipes
+
+### Create a Payment (QRPh)
+
+```typescript
+import { Configuration, QRPhRequestsApi, CanonicalCreateQRReqTypeEnum } from '@domdanao/magpiepay-sdk-typescript';
+
+const config = new Configuration({
+    username: 'YOUR_API_KEY',
+    password: '',
+});
+
+const qrphApi = new QRPhRequestsApi(config);
+
+async function createPayment() {
+    try {
+        const response = await qrphApi.createQrphV1QrphPost({
+            reference_id: 'my-ref-123',
+            amount: 10000, // 100.00 PHP
+            type: CanonicalCreateQRReqTypeEnum.Dynamic,
+            metadata: {
+                customer_name: 'John Doe'
+            }
+        });
+        
+        console.log('Payment Created:', response.data);
+        console.log('Checkout URL:', response.data.data.checkout_url);
+    } catch (error) {
+        console.error('Error creating payment:', error);
+    }
+}
+```
+
+### Create a Payout
+
+```typescript
+import { Configuration, PayoutsApi, PayoutCreateRequestChannelEnum } from '@domdanao/magpiepay-sdk-typescript';
+
+const config = new Configuration({
+    username: 'YOUR_API_KEY',
+    password: '',
+});
+
+const payoutsApi = new PayoutsApi(config);
+
+async function createPayout() {
+    try {
+        const response = await payoutsApi.createPayoutV1PayoutsPost({
+            reference_id: 'payout-ref-456',
+            amount: 50000, // 500.00 PHP
+            channel: PayoutCreateRequestChannelEnum.Instapay,
+            source_account_id: 'src_123',
+            destination: {
+                bank_code: 'BDO',
+                account_number: '1234567890',
+                first_name: 'Jane',
+                last_name: 'Doe'
+            }
+        });
+
+        console.log('Payout Initiated:', response.data);
+    } catch (error) {
+        console.error('Error creating payout:', error);
+    }
+}
+```
+
+## Error Handling
+
+The SDK throws errors that can be caught.
+
+```typescript
+try {
+    // ... api call
+} catch (error: any) {
+    if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error('Data:', error.response.data);
+        console.error('Status:', error.response.status);
+    } else if (error.request) {
+        // The request was made but no response was received
+        console.error('No response received');
+    } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error('Error:', error.message);
+    }
+}
+```
+
+## Documentation for API Endpoints
 
 All URIs are relative to *http://localhost*
 
@@ -63,7 +157,7 @@ Class | Method | HTTP request | Description
 *ReferencesApi* | [**listBankCodesV1ReferencesBankCodesGet**](docs/ReferencesApi.md#listbankcodesv1referencesbankcodesget) | **GET** /v1/references/bank_codes | List Bank Codes
 
 
-### Documentation For Models
+## Documentation For Models
 
  - [ApiError](docs/ApiError.md)
  - [BankCodeCollection](docs/BankCodeCollection.md)
@@ -85,15 +179,3 @@ Class | Method | HTTP request | Description
  - [QRPhSingleResponse](docs/QRPhSingleResponse.md)
  - [ValidationError](docs/ValidationError.md)
  - [ValidationErrorLocInner](docs/ValidationErrorLocInner.md)
-
-
-<a id="documentation-for-authorization"></a>
-## Documentation For Authorization
-
-
-Authentication schemes defined for the API:
-<a id="basicAuth"></a>
-### basicAuth
-
-- **Type**: HTTP basic authentication
-
