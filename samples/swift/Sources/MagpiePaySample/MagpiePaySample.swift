@@ -23,11 +23,11 @@ struct MagpiePaySample {
                 print("Error: \(error)")
             } else if let result = result {
                 print("Success! Found bank codes:")
+                print("Success! Found bank codes:")
                 // result is BankCodeCollection
-                if let data = result.data {
-                    for bank in data {
-                        print("- \(bank.name ?? "") (\(bank.code))")
-                    }
+                let data = result.data
+                for bank in data {
+                    print("- \(bank.name ?? "") (\(bank.code))")
                 }
             }
             semaphore.signal()

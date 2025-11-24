@@ -1,6 +1,6 @@
 {
   "name": "@magpiepay/sdk",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.1",
   "description": "OpenAPI client for @magpiepay/sdk",
   "author": "OpenAPI-Generator Contributors",
   "repository": {

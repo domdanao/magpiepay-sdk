@@ -22,7 +22,7 @@ func main() {
 	client := magpiepay.NewAPIClient(cfg)
 
 	fmt.Println("Fetching bank codes...")
-	
+
 	resp, _, err := client.ReferencesAPI.ListBankCodesV1ReferencesBankCodesGet(context.Background()).XAPIKey(apiKey).Execute()
 	if err != nil {
 		fmt.Printf("Error when calling ReferencesApi->ListBankCodesV1ReferencesBankCodesGet: %v\n", err)
@@ -32,10 +32,13 @@ func main() {
 	fmt.Println("Success! Found bank codes:")
 	// Iterate over resp.Data which is []BankCodeEntry
 	for _, bank := range resp.Data {
-		// Name is a pointer, so dereference it if not nil
+		// Name is NullableString
 		name := ""
-		if bank.Name != nil {
-			name = *bank.Name
+		if bank.Name.IsSet() {
+			val := bank.Name.Get()
+			if val != nil {
+				name = *val
+			}
 		}
 		fmt.Printf("- %s (%s)\n", name, bank.Code)
 	}
