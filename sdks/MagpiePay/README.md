@@ -28,6 +28,16 @@ MagpiePayAPI.customHeaders = ["X-API-Key": "YOUR_API_KEY"]
 // MagpiePayAPI.customHeaders = ["Authorization": "Basic ..."]
 ```
 
+#### Custom Base URL
+
+You can override the base URL for local development:
+
+```swift
+// The SDK defaults to https://api.magpiepay.com
+// Override if needed:
+MagpiePayAPI.basePath = ProcessInfo.processInfo.environment["MAGPIEPAY_BASE_URL"] ?? "https://api.magpiepay.com"
+```
+
 ### Examples
 
 #### List Payments

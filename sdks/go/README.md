@@ -31,15 +31,18 @@ func main() {
 	apiKey := os.Getenv("MAGPIEPAY_API_KEY")
 
 	cfg := magpiepay.NewConfiguration()
-	cfg.Servers = magpiepay.ServerConfigurations{
-		{
-			URL: "https://api.magpiepay.com",
-		},
+	// The SDK defaults to https://api.magpiepay.com
+	// Override for local development if needed:
+	if baseURL := os.Getenv("MAGPIEPAY_BASE_URL"); baseURL != "" {
+		cfg.Servers = magpiepay.ServerConfigurations{
+			{URL: baseURL},
+		}
 	}
 	
 	// Set API Key in context
-	ctx := context.WithValue(context.Background(), magpiepay.ContextAPIKeys, map[string]magpiepay.APIKey{
-		"xAPIKey": {Key: apiKey},
+	ctx := context.WithValue(context.Background(), magpiepay.ContextBasicAuth, magpiepay.BasicAuth{
+		UserName: apiKey,
+		Password: "",
 	})
 
 	client := magpiepay.NewAPIClient(cfg)

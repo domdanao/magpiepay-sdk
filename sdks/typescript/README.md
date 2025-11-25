@@ -27,6 +27,18 @@ const config = new Configuration({
 const paymentsApi = new PaymentsApi(config);
 ```
 
+#### Custom Base URL
+
+You can override the base URL for local development:
+
+```typescript
+const config = new Configuration({
+    username: process.env.MAGPIEPAY_API_KEY,
+    password: '',
+    basePath: process.env.MAGPIEPAY_BASE_URL || 'https://api.magpiepay.com',
+});
+```
+
 ### Examples
 
 #### List Payments

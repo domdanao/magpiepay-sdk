@@ -35,6 +35,18 @@ payments = payments_api.PaymentsApi(api_client)
 payouts = payouts_api.PayoutsApi(api_client)
 ```
 
+#### Custom Base URL
+
+You can override the base URL for local development:
+
+```python
+configuration = magpiepay.Configuration(
+    host = os.environ.get("MAGPIEPAY_BASE_URL", "https://api.magpiepay.com"),
+    username = os.environ["MAGPIEPAY_API_KEY"],
+    password = ""
+)
+```
+
 ### Examples
 
 #### List Payments

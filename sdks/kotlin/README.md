@@ -26,6 +26,16 @@ apiClient.addDefaultHeader("X-API-Key", "YOUR_API_KEY")
 val paymentsApi = PaymentsApi(apiClient)
 ```
 
+#### Custom Base URL
+
+You can override the base URL for local development:
+
+```kotlin
+val baseUrl = System.getenv("MAGPIEPAY_BASE_URL") ?: "https://api.magpiepay.com"
+val apiClient = ApiClient(baseUrl = baseUrl)
+apiClient.addDefaultHeader("X-API-Key", System.getenv("MAGPIEPAY_API_KEY"))
+```
+
 ### Examples
 
 #### List Payments
