@@ -25,7 +25,7 @@ from magpiepay.model.payout_create_request import PayoutCreateRequest
 # Configure API key authorization
 configuration = magpiepay.Configuration(
     host = "https://api.magpiepay.com",
-    username = os.environ["MAGPIE_API_KEY"],
+    username = os.environ["MAGPIEPAY_API_KEY"],
     password = ""
 )
 

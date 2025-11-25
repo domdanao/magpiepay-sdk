@@ -20,7 +20,7 @@ npm install -g @domdanao/magpiepay-mcp-server
 
 The server requires your MagpiePay API Key to be set as an environment variable:
 
-- `MAGPIE_API_KEY`: Your MagpiePay API Key (Live or Test).
+- `MAGPIEPAY_API_KEY`: Your MagpiePay API Key (Live or Test).
 
 ## Usage
 
@@ -35,7 +35,7 @@ To use this server with Claude Desktop, add the following to your `claude_deskto
       "command": "npx",
       "args": ["-y", "@domdanao/magpiepay-mcp-server"],
       "env": {
-        "MAGPIE_API_KEY": "your_api_key_here"
+        "MAGPIEPAY_API_KEY": "your_api_key_here"
       }
     }
   }
@@ -45,7 +45,7 @@ To use this server with Claude Desktop, add the following to your `claude_deskto
 ### Manual Run
 
 ```bash
-export MAGPIE_API_KEY=your_key
+export MAGPIEPAY_API_KEY=your_key
 npx @domdanao/magpiepay-mcp-server
 ```
 

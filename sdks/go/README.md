@@ -28,7 +28,7 @@ import (
 )
 
 func main() {
-	apiKey := os.Getenv("MAGPIE_API_KEY")
+	apiKey := os.Getenv("MAGPIEPAY_API_KEY")
 
 	cfg := magpiepay.NewConfiguration()
 	cfg.Servers = magpiepay.ServerConfigurations{

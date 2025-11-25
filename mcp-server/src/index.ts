@@ -6,9 +6,9 @@ import * as fs from "fs";
 import * as path from "path";
 
 // Initialize SDK
-const apiKey = process.env.MAGPIE_API_KEY;
+const apiKey = process.env.MAGPIEPAY_API_KEY;
 if (!apiKey) {
-    console.error("Error: MAGPIE_API_KEY environment variable not set");
+    console.error("Error: MAGPIEPAY_API_KEY environment variable not set");
     process.exit(1);
 }
 

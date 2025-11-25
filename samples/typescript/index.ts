@@ -1,9 +1,9 @@
 import { Configuration, ReferencesApi } from '@domdanao/magpiepay-sdk-typescript';
 
-const apiKey = process.env.MAGPIE_API_KEY;
+const apiKey = process.env.MAGPIEPAY_API_KEY;
 
 if (!apiKey) {
-    console.error("Error: Please set the MAGPIE_API_KEY environment variable.");
+    console.error("Error: Please set the MAGPIEPAY_API_KEY environment variable.");
     process.exit(1);
 }
 

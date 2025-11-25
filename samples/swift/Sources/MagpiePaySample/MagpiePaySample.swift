@@ -4,9 +4,9 @@ import MagpiePay
 @main
 struct MagpiePaySample {
     static func main() {
-        let apiKey = ProcessInfo.processInfo.environment["MAGPIE_API_KEY"] ?? ""
+        let apiKey = ProcessInfo.processInfo.environment["MAGPIEPAY_API_KEY"] ?? ""
         if apiKey.isEmpty {
-            print("Error: MAGPIE_API_KEY environment variable not set")
+            print("Error: MAGPIEPAY_API_KEY environment variable not set")
             exit(1)
         }
 

@@ -2,10 +2,10 @@
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Get API Key from environment variable
-$apiKey = getenv('MAGPIE_API_KEY');
+$apiKey = getenv('MAGPIEPAY_API_KEY');
 
 if (!$apiKey) {
-    echo "Error: Please set the MAGPIE_API_KEY environment variable.\n";
+    echo "Error: Please set the MAGPIEPAY_API_KEY environment variable.\n";
     exit(1);
 }
 

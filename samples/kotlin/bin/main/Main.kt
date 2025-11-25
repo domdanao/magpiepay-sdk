@@ -3,9 +3,9 @@ import org.openapitools.client.infrastructure.ApiClient
 import java.io.IOException
 
 fun main() {
-    val apiKey = System.getenv("MAGPIE_API_KEY")
+    val apiKey = System.getenv("MAGPIEPAY_API_KEY")
     if (apiKey.isNullOrEmpty()) {
-        println("Error: MAGPIE_API_KEY environment variable not set")
+        println("Error: MAGPIEPAY_API_KEY environment variable not set")
         System.exit(1)
     }
 

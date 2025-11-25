@@ -10,7 +10,7 @@ jest.mock("fs");
 jest.mock("path");
 
 // Set environment variable
-process.env.MAGPIE_API_KEY = "test_key";
+process.env.MAGPIEPAY_API_KEY = "test_key";
 
 describe("MCP Server", () => {
     let mockServer: any;

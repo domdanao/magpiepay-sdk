@@ -20,7 +20,7 @@ Initialize the `Configuration` object with your API key.
 import { Configuration, PaymentsApi } from '@domdanao/magpiepay-sdk-typescript';
 
 const config = new Configuration({
-    username: process.env.MAGPIE_API_KEY, // Use your API Key as the username
+    username: process.env.MAGPIEPAY_API_KEY, // Use your API Key as the username
     password: '', // Leave password empty
 });
 

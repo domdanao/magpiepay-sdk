@@ -9,9 +9,9 @@ import (
 )
 
 func main() {
-	apiKey := os.Getenv("MAGPIE_API_KEY")
+	apiKey := os.Getenv("MAGPIEPAY_API_KEY")
 	if apiKey == "" {
-		fmt.Println("Error: MAGPIE_API_KEY environment variable not set")
+		fmt.Println("Error: MAGPIEPAY_API_KEY environment variable not set")
 		os.Exit(1)
 	}
 

@@ -5,9 +5,9 @@ from magpiepay.api import references_api
 from pprint import pprint
 
 # Get API key from environment
-api_key = os.environ.get('MAGPIE_API_KEY')
+api_key = os.environ.get('MAGPIEPAY_API_KEY')
 if not api_key:
-    print("Error: MAGPIE_API_KEY environment variable not set")
+    print("Error: MAGPIEPAY_API_KEY environment variable not set")
     sys.exit(1)
 
 # Configure the client
