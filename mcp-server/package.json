@@ -1,6 +1,6 @@
 {
   "name": "@domdanao/magpiepay-mcp-server",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.1",
   "description": "MagpiePay MCP Server",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@domdanao/magpiepay-sdk-typescript": "file:../sdks/typescript",
+    "@domdanao/magpiepay-sdk-typescript": "^1.0.0",
     "@modelcontextprotocol/sdk": "^1.22.0",
     "zod": "^3.23.8"
   },
