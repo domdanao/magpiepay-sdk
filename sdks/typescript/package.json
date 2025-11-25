@@ -1,6 +1,6 @@
 {
   "name": "@domdanao/magpiepay-sdk-typescript",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.1",
   "description": "OpenAPI client for @domdanao/magpiepay-sdk-typescript",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
